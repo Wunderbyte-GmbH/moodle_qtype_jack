@@ -1,0 +1,25 @@
+.que.jack textarea.qtype_jack_response {
+    width: 100%;
+}
+
+.que.jack textarea.qtype_jack_response.qtype_jack_plain {
+    white-space: pre-wrap;
+    font: inherit;
+}
+
+.que.jack textarea.qtype_jack_response.qtype_jack_monospaced {
+    white-space: pre;
+    font-family: Andale Mono, Monaco, Courier New, DejaVu Sans Mono, monospace;
+}
+
+.que.jack .qtype_jack_response {
+    min-height: 3em;
+}
+
+.que.jack .qtype_jack_response.readonly {
+    background-color: white;
+}
+
+.que.jack div.qtype_jack_response textarea {
+    width: 100%;
+}
