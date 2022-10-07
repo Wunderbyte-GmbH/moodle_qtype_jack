@@ -51,9 +51,9 @@ class qtype_jack extends question_type {
         parent::get_question_options($question);
 
         // Get jack options.
-        $jack_options = $DB->get_record('question_jack', array('questionid' => $question->id));
-        $question->testdriver = $jack_options->testdriver;
-        $question->ruleset = $jack_options->ruleset;
+        $jackoptions = $DB->get_record('question_jack', array('questionid' => $question->id));
+        $question->testdriver = $jackoptions->testdriver;
+        $question->ruleset = $jackoptions->ruleset;
     }
 
     public function save_question_options($formdata) {
@@ -71,8 +71,7 @@ class qtype_jack extends question_type {
         if ($options->attachments) {
             $options->attachmentsrequired = 1;
             $options->responseformat = 'noinline';
-        }
-        else {
+        } else {
             $options->responseformat = 'plain';
         }
         $options->responserequired = 1;
@@ -86,17 +85,17 @@ class qtype_jack extends question_type {
         $DB->update_record('qtype_jack_options', $options);
 
         // Add jack options.
-        $jack_options = $DB->get_record('question_jack', array('questionid' => $formdata->id));
-        if (empty($jack_options)) {
-            $jack_options = new stdClass();
-            $jack_options->questionid = $formdata->id;
-            $jack_options->timecreated = time();
-            $jack_options->id = $DB->insert_record('question_jack', $jack_options);
+        $jackoptions = $DB->get_record('question_jack', array('questionid' => $formdata->id));
+        if (empty($jackoptions)) {
+            $jackoptions = new stdClass();
+            $jackoptions->questionid = $formdata->id;
+            $jackoptions->timecreated = time();
+            $jackoptions->id = $DB->insert_record('question_jack', $jackoptions);
         }
-        $jack_options->testdriver = $formdata->testdriver;
-        $jack_options->ruleset = $formdata->ruleset;
+        $jackoptions->testdriver = $formdata->testdriver;
+        $jackoptions->ruleset = $formdata->ruleset;
 
-        $DB->update_record('question_jack', $jack_options);
+        $DB->update_record('question_jack', $jackoptions);
     }
 
     protected function initialise_question_instance(question_definition $question, $questiondata) {
@@ -212,8 +211,8 @@ class qtype_jack extends question_type {
      * If some of you fields contains id's you'll need to reimplement this
      */
     public function import_from_xml($data, $question, qformat_xml $format, $extra=null) {
-        $question_type = $data['@']['type'];
-        if ($question_type != $this->name()) {
+        $questiontype = $data['@']['type'];
+        if ($questiontype != $this->name()) {
             return false;
         }
 
@@ -225,7 +224,7 @@ class qtype_jack extends question_type {
         // Omit table name.
         array_shift($extraquestionfields);
         $qo = $format->import_headers($data);
-        $qo->qtype = $question_type;
+        $qo->qtype = $questiontype;
 
         foreach ($extraquestionfields as $field) {
             $qo->$field = $format->getpath($data, array('#', $field, 0, '#'), '');
@@ -263,7 +262,7 @@ class qtype_jack extends question_type {
 
         // Omit table name.
         array_shift($extraquestionfields);
-        $expout='';
+        $expout = '';
         foreach ($extraquestionfields as $field) {
             $exportedvalue = $format->xml_escape($question->options->$field);
             $expout .= "    <{$field}>{$exportedvalue}</{$field}>\n";
