@@ -185,9 +185,9 @@ class qtype_jack_question extends question_with_responses {
 
     public function get_filetypeslist() {
         switch ($this->filetypeslist) {
-        case 0:
+            case 0:
             return array('.java', '.jar');
-        default:
+            default:
             return array();
         }
     }
