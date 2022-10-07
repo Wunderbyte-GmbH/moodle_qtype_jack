@@ -27,7 +27,23 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_jack;
+
+use context_module;
+use context_system;
+use Exception;
+use external_api;
+use external_files;
+use external_function_parameters;
+use external_single_structure;
+use external_value;
+use question_engine;
+use question_engine_data_mapper;
+use question_file_loader;
+use stdClass;
+
 defined('MOODLE_INTERNAL') || die;
+
 require_once($CFG->libdir.'/externallib.php');
 require_once($CFG->libdir.'/questionlib.php');
 require_once($CFG->dirroot.'/question/engine/datalib.php');
@@ -100,7 +116,7 @@ class jack extends external_api {
         $jackquestions = $DB->get_records('question', array('qtype' => 'jack'));
 
         foreach ($jackquestions as $jackquestion) {
-            $jackattempts = $DB->get_records('question_attempts', array('questionid' => $jackquestion->id));
+            $jackattempts = $DB->get_records('questionattempts', array('questionid' => $jackquestion->id));
             foreach ($jackattempts as $jackattempt) {
 
                 // Check for preview attempt.
@@ -111,10 +127,10 @@ class jack extends external_api {
 
                 // Check for steps.
                 $laststepsql = "SELECT MAX(sequencenumber) AS sequence
-                FROM {question_attempt_steps}
+                FROM {questionattemptsteps}
                 WHERE questionattemptid = $jackattempt->id";
                 $lastsequence = $DB->get_records_sql($laststepsql);
-                $laststep = $DB->get_record('question_attempt_steps',
+                $laststep = $DB->get_record('questionattemptsteps',
                     array('questionattemptid' => $jackattempt->id,
                     'sequencenumber' => current($lastsequence)->sequence));
 
@@ -123,14 +139,14 @@ class jack extends external_api {
                     $data = new stdClass();
                     $data->attemptid = $jackattempt->id;
                     // Get submitted data.
-                    $completionstep = $DB->get_record('question_attempt_steps',
+                    $completionstep = $DB->get_record('questionattemptsteps',
                         array('questionattemptid' => $jackattempt->id, 'state' => 'complete'));
                     $options = $DB->get_record('qtype_jack_options',
                         array('questionid' => $jackquestion->id));
                     if ($options->attachments) {
                         $data->attachments = array();
                         $dm = new question_engine_data_mapper();
-                        $qa = $dm->load_question_attempt($jackattempt->id);
+                        $qa = $dm->load_questionattempt($jackattempt->id);
                         $files = $qa->get_last_qt_files('attachments', $questionusage->contextid);
                         foreach ($files as $file) {
                             $data->attachments[] = array(
@@ -144,7 +160,7 @@ class jack extends external_api {
                             );
                         }
                     } else {
-                        $submission = $DB->get_record('question_attempt_step_data',
+                        $submission = $DB->get_record('questionattempt_step_data',
                             array('attemptstepid' => $completionstep->id, 'name' => 'answer'));
                         $data->submission = $submission->value;
                     }
@@ -203,23 +219,23 @@ class jack extends external_api {
         );
 
         try {
-            $question_attempt = $DB->get_record('question_attempts', array('id' => $attemptid));
-            $question_attempt_steps = $DB->get_record('question_attempt_steps',
+            $questionattempt = $DB->get_record('questionattempts', array('id' => $attemptid));
+            $questionattemptsteps = $DB->get_record('questionattemptsteps',
                 array('questionattemptid' => $attemptid, 'state' => 'needsgrading'));
-            $data =  array('answer' => '');
-            $step = new question_attempt_step_read_only($data, time(), $question_attempt_steps->userid);
-            $questionusage = $DB->get_record('questionusages', array('id' => $question_attempt->questionusageid));
-            $context_rec = $DB->get_record('context', array('id' => $questionusage->contextid));
-            $cm = $DB->get_record('course_modules', array('id' => $context_rec->instanceid));
+            $data = array('answer' => ' ');
+            $step = new questionattempt_step_read_only($data, time(), $questionattemptsteps->userid);
+            $questionusage = $DB->get_record('questionusages', array('id' => $questionattempt->questionusageid));
+            $contextrec = $DB->get_record('context', array('id' => $questionusage->contextid));
+            $cm = $DB->get_record('course_modules', array('id' => $contextrec->instanceid));
             $context = context_module::instance($cm->id);
-            $questtion_file = new question_file_loader($step, 'bf_comment', $feedback, $context->id);
-            $submit['-comment'] = $questtion_file->get_question_file_saver();
+            $questtionfile = new question_file_loader($step, 'bf_comment', $feedback, $context->id);
+            $submit['-comment'] = $questtionfile->get_question_file_saver();
             $submit['-commentformat'] = 1;
-            $submit['-mark'] = ($grade/100)*$question_attempt->maxmark;
-            $submit['-maxmark'] = $question_attempt->maxmark;
+            $submit['-mark'] = ($grade / 100) * $questionattempt->maxmark;
+            $submit['-maxmark'] = $questionattempt->maxmark;
 
-            $quba = question_engine::load_questions_usage_by_activity($question_attempt->questionusageid);
-            $quba->process_action($question_attempt->slot, $submit);
+            $quba = question_engine::load_questions_usage_by_activity($questionattempt->questionusageid);
+            $quba->process_action($questionattempt->slot, $submit);
             $transaction = $DB->start_delegated_transaction();
             question_engine::save_questions_usage_by_activity($quba);
             $transaction->allow_commit();

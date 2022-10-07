@@ -28,9 +28,6 @@ namespace qtype_jack;
 use question_bank;
 use question_edit_form;
 
-defined('MOODLE_INTERNAL') || die();
-
-
 /**
  * jack question type editing form.
  *
