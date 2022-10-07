@@ -35,11 +35,11 @@ require_once($CFG->dirroot.'/question/engine/datalib.php');
 class jack extends external_api {
 
     /**
-     * Parameterdefinition for method "get_next_jack_question"
+     * Parameterdefinition for method "get_next_jackquestion"
      *
      * @return external_function_parameters {object} external_function_parameters
      */
-    public static function get_next_jack_question_parameters() {
+    public static function get_next_jackquestion_parameters() {
         return new external_function_parameters(
             array(
             )
@@ -55,7 +55,7 @@ class jack extends external_api {
      * @throws invalid_parameter_exception
      * @throws required_capability_exception
      */
-    public static function get_next_jack_question() {
+    public static function get_next_jackquestion() {
 
         $context = context_system::instance();
         require_capability('qtype/jack:access', $context);
@@ -72,11 +72,11 @@ class jack extends external_api {
     }
 
     /**
-     * Returndefinition for method "get_next_jack_question"
+     * Returndefinition for method "get_next_jackquestion"
      *
      * @return external_single_structure {object} external_value external_value
      */
-    public static function get_next_jack_question_returns() {
+    public static function get_next_jackquestion_returns() {
         return new external_single_structure(
             array(
                 'attemptid'  => new external_value(PARAM_INT, 'attemptid', VALUE_OPTIONAL),
@@ -89,7 +89,7 @@ class jack extends external_api {
     }
 
     /**
-     * Helper function for get_next_jack_question function.
+     * Helper function for get_next_jackquestion function.
      *
      * @return bool|stdClass {object} object of question info data.
      * @throws dml_exception
@@ -97,41 +97,41 @@ class jack extends external_api {
     public static function get_next_question() {
         global $DB;
 
-        $jack_questions = $DB->get_records('question', array('qtype' => 'jack'));
+        $jackquestions = $DB->get_records('question', array('qtype' => 'jack'));
 
-        foreach ($jack_questions as $jack_question) {
-            $jack_attempts = $DB->get_records('question_attempts', array('questionid' => $jack_question->id));
-            foreach ($jack_attempts as $jack_attempt) {
+        foreach ($jackquestions as $jackquestion) {
+            $jackattempts = $DB->get_records('question_attempts', array('questionid' => $jackquestion->id));
+            foreach ($jackattempts as $jackattempt) {
 
                 // Check for preview attempt.
-                $question_usage = $DB->get_record('question_usages', array('id' => $jack_attempt->questionusageid));
-                if ($question_usage->component == 'core_question_preview') {
+                $questionusage = $DB->get_record('questionusages', array('id' => $jackattempt->questionusageid));
+                if ($questionusage->component == 'core_question_preview') {
                     continue; // We dont want to grade previews here.
                 }
 
                 // Check for steps.
-                $last_step_sql = "SELECT MAX(sequencenumber) AS sequence
+                $laststepsql = "SELECT MAX(sequencenumber) AS sequence
                 FROM {question_attempt_steps}
-                WHERE questionattemptid = $jack_attempt->id";
-                $last_sequence = $DB->get_records_sql($last_step_sql);
-                $last_step = $DB->get_record('question_attempt_steps',
-                    array('questionattemptid' => $jack_attempt->id,
-                    'sequencenumber' => current($last_sequence)->sequence));
+                WHERE questionattemptid = $jackattempt->id";
+                $lastsequence = $DB->get_records_sql($laststepsql);
+                $laststep = $DB->get_record('question_attempt_steps',
+                    array('questionattemptid' => $jackattempt->id,
+                    'sequencenumber' => current($lastsequence)->sequence));
 
-                if ($last_step->state == 'needsgrading') {
+                if ($laststep->state == 'needsgrading') {
                     // Found one, collect data and return it as result.
                     $data = new stdClass();
-                    $data->attemptid = $jack_attempt->id;
+                    $data->attemptid = $jackattempt->id;
                     // Get submitted data.
-                    $completion_step = $DB->get_record('question_attempt_steps',
-                        array('questionattemptid' => $jack_attempt->id, 'state' => 'complete'));
+                    $completionstep = $DB->get_record('question_attempt_steps',
+                        array('questionattemptid' => $jackattempt->id, 'state' => 'complete'));
                     $options = $DB->get_record('qtype_jack_options',
-                        array('questionid' => $jack_question->id));
+                        array('questionid' => $jackquestion->id));
                     if ($options->attachments) {
                         $data->attachments = array();
                         $dm = new question_engine_data_mapper();
-                        $qa = $dm->load_question_attempt($jack_attempt->id);
-                        $files = $qa->get_last_qt_files('attachments', $question_usage->contextid);
+                        $qa = $dm->load_question_attempt($jackattempt->id);
+                        $files = $qa->get_last_qt_files('attachments', $questionusage->contextid);
                         foreach ($files as $file) {
                             $data->attachments[] = array(
                                 'filename' => $file->get_filename(),
@@ -145,14 +145,14 @@ class jack extends external_api {
                         }
                     } else {
                         $submission = $DB->get_record('question_attempt_step_data',
-                            array('attemptstepid' => $completion_step->id, 'name' => 'answer'));
+                            array('attemptstepid' => $completionstep->id, 'name' => 'answer'));
                         $data->submission = $submission->value;
                     }
                     // Get jack data for this question.
-                    $question_jack_settings = $DB->get_record('question_jack',
-                        array('questionid' => $jack_question->id));
-                    $data->testdriver = $question_jack_settings->testdriver;
-                    $data->ruleset = $question_jack_settings->ruleset;
+                    $questionjacksettings = $DB->get_record('question_jack',
+                        array('questionid' => $jackquestion->id));
+                    $data->testdriver = $questionjacksettings->testdriver;
+                    $data->ruleset = $questionjacksettings->ruleset;
                     return $data;
                 }
             }
@@ -162,11 +162,11 @@ class jack extends external_api {
     }
 
     /**
-     * Parameterdefinition for method "set_jack_question_result"
+     * Parameterdefinition for method "set_jackquestion_result"
      *
      * @return external_function_parameters {object} external_function_parameters
      */
-    public static function set_jack_question_result_parameters() {
+    public static function set_jackquestion_result_parameters() {
         return new external_function_parameters(
             array(
                 'attemptid' => new external_value(PARAM_INT, 'attempt id'),
@@ -185,7 +185,7 @@ class jack extends external_api {
      * @throws invalid_parameter_exception
      * @throws required_capability_exception
      */
-    public static function set_jack_question_result($attemptid, $grade, $feedback) {
+    public static function set_jackquestion_result($attemptid, $grade, $feedback) {
         global $DB, $CFG;
 
         $context = context_system::instance();
@@ -194,7 +194,7 @@ class jack extends external_api {
 
         // Parameter validation.
         self::validate_parameters(
-            self::set_jack_question_result_parameters(),
+            self::set_jackquestion_result_parameters(),
             array(
                 'attemptid' => $attemptid,
                 'grade' => $grade,
@@ -208,8 +208,8 @@ class jack extends external_api {
                 array('questionattemptid' => $attemptid, 'state' => 'needsgrading'));
             $data =  array('answer' => '');
             $step = new question_attempt_step_read_only($data, time(), $question_attempt_steps->userid);
-            $question_usage = $DB->get_record('question_usages', array('id' => $question_attempt->questionusageid));
-            $context_rec = $DB->get_record('context', array('id' => $question_usage->contextid));
+            $questionusage = $DB->get_record('questionusages', array('id' => $question_attempt->questionusageid));
+            $context_rec = $DB->get_record('context', array('id' => $questionusage->contextid));
             $cm = $DB->get_record('course_modules', array('id' => $context_rec->instanceid));
             $context = context_module::instance($cm->id);
             $questtion_file = new question_file_loader($step, 'bf_comment', $feedback, $context->id);
@@ -248,11 +248,11 @@ class jack extends external_api {
     }
 
     /**
-     * Returndefinition for method "set_jack_question_result"
+     * Returndefinition for method "set_jackquestion_result"
      *
      * @return external_single_structure {object} external_value external_value
      */
-    public static function set_jack_question_result_returns() {
+    public static function set_jackquestion_result_returns() {
         return new external_single_structure(
             array(
                 'success'   => new external_value(PARAM_BOOL, 'Return success of operation true or false'),

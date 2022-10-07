@@ -22,6 +22,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_jack;
+
+use context_course;
+use question_edit_contexts;
+use restore_date_testcase;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
@@ -33,7 +39,7 @@ require_once($CFG->libdir . "/phpunit/classes/restore_date_testcase.php");
  * @copyright  2019 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_jack_restore_testcase extends restore_date_testcase  {
+class restore_test extends restore_date_testcase {
 
     /**
      * Test missing qtype_jack_options creation.
@@ -50,6 +56,7 @@ class qtype_jack_restore_testcase extends restore_date_testcase  {
         $course = $generator->create_course();
         $contexts = new question_edit_contexts(context_course::instance($course->id));
         $category = question_make_default_categories($contexts->all());
+        /** @var core_question_generator $questiongenerator */
         $questiongenerator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $jack = $questiongenerator->create_question('jack', null, array('category' => $category->id));
 

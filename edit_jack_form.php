@@ -23,6 +23,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_jack;
+
+use question_bank;
+use question_edit_form;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -66,7 +70,7 @@ class qtype_jack_edit_form extends question_edit_form {
         $mform->setDefault('attachments', 0);
 
         // $mform->addElement('select', 'attachmentsrequired',
-        //         get_string('attachmentsrequired', 'qtype_jack'), $qtype->attachments_required_options());
+        // get_string('attachmentsrequired', 'qtype_jack'), $qtype->attachments_required_options());
         // $mform->setDefault('attachmentsrequired', 0);
         // $mform->addHelpButton('attachmentsrequired', 'attachmentsrequired', 'qtype_jack');
         // $mform->disabledIf('attachmentsrequired', 'attachments', 'eq', 0);

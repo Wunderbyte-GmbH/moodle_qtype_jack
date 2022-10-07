@@ -23,6 +23,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_jack;
+
+use advanced_testcase;
+use question_attempt_step;
+use test_question_maker;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -36,7 +41,7 @@ require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
  * @copyright  2009 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_jack_question_test extends advanced_testcase {
+class question_test extends advanced_testcase {
     public function test_get_question_summary() {
         $jack = test_question_maker::make_an_jack_question();
         $jack->questiontext = 'Hello <img src="http://example.com/globe.png" alt="world" />';

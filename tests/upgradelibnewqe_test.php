@@ -24,6 +24,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_jack;
+
+use question_attempt_upgrader_test_base;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -37,7 +40,7 @@ require_once($CFG->dirroot . '/question/engine/upgrade/tests/helper.php');
  * @copyright  2009 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_jack_attempt_upgrader_test extends question_attempt_upgrader_test_base {
+class upgradelibnewqe_test extends question_attempt_upgrader_test_base {
 
     public function test_jack_deferredfeedback_history98220() {
         $quiz = (object) array(
@@ -95,7 +98,13 @@ class qtype_jack_attempt_upgrader_test extends question_attempt_upgrader_test_ba
             'name' => 'Question 6',
             'questiontext' => '<p>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="ProgId" content="Word.Document"></meta><meta name="Generator" content="Microsoft Word 11"></meta><meta name="Originator" content="Microsoft Word 11"></meta><link rel="File-List" href="file:///C:\\DOCUME~1\\pgt2\\LOCALS~1\\Temp\\msohtml1\\01\\clip_filelist.xml"></link><style></style>Give two examples of facilities within XML schemas that cannot be found in Document Type Definitions (DTDs).<br /><i>(2 marks)</i></p>',
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+        <meta name="ProgId" content="Word.Document"></meta><meta name="Generator" content="Microsoft Word 11"></meta>
+        <meta name="Originator" content="Microsoft Word 11"></meta>
+        <link rel="File-List" href="file:///C:\\DOCUME~1\\pgt2\\LOCALS~1\\Temp\\msohtml1\\01\\clip_filelist.xml"></link>
+        <style></style>
+        Give two examples of facilities within XML schemas that cannot be found in Document Type Definitions (DTDs).
+        <br /><i>(2 marks)</i></p>',
             'questiontextformat' => '1',
             'defaultmark' => '2',
             'penalty' => '0',
@@ -277,8 +286,16 @@ class qtype_jack_attempt_upgrader_test extends question_attempt_upgrader_test_ba
             'id' => '142',
             'course' => '187',
             'name' => 'Questionnaire',
-            'intro' => '<p>B680 is pioneering the use of the eAssessment module in the OU VLE (Virtual Learning Environment). We believe that the module is fit for purpose but we need users\' (students and ALs) experience to confirm this. Your answers to this short questionnaire therefore are of wide importance to the OU VLE Development Programme.  If you could complete this short questionnaire after attempting Practice CTMA04 <b></b>it would be greatly appreciated.</p>
-        <p>The questionnaire has 15 questions and we would like you to answer as many of these as possible.  When you have completed your answers you will see a End test button, similar to the one in Practice CTMA 04, which you will need to click.  This will move you to a Summary page.  Please click the \'Submit all and finish\' button when you are happy to submit your final answers.  <strong>Please complete the questionnaire only once.</strong>  At a later stage the B680 Course Team will analyse the students\' answers to the questions. <br /></p>',
+            'intro' => '<p>B680 is pioneering the use of the eAssessment module in the OU VLE (Virtual Learning Environment).
+             We believe that the module is fit for purpose but we need users\' (students and ALs) experience to confirm this.
+             Your answers to this short questionnaire therefore are of wide importance to the OU VLE Development Programme.
+             If you could complete this short questionnaire after attempting Practice CTMA04
+             <b></b>it would be greatly appreciated.</p>
+             <p>The questionnaire has 15 questions and we would like you to answer as many of these as possible.
+             When you have completed  your answers you will see a End test button, similar to the one in Practice CTMA 04,
+             which you will need to click.  This will move you to a Summary page.  Please click the \'Submit all and finish\'
+             button when you are happy to submit your final answers.  <strong>Please complete the questionnaire only once.</strong>
+             At a later stage the B680 Course Team will analyse the students\' answers to the questions. <br /></p>',
             'introformat' => FORMAT_HTML,
             'questiondecimalpoints' => '-1',
             'showuserpicture' => '1',
@@ -323,7 +340,8 @@ class qtype_jack_attempt_upgrader_test extends question_attempt_upgrader_test_ba
             'category' => '163',
             'parent' => '0',
             'name' => 'Question 98',
-            'questiontext' => 'If you answered ‘No’ to the previous question please expand on your problem here.<br /><b></b><br />',
+            'questiontext' => 'If you answered ‘No’ to the previous question please expand on your problem here.<br />
+            <b></b><br />',
             'questiontextformat' => '1',
             'defaultmark' => '0',
             'penalty' => '0',
@@ -383,7 +401,10 @@ class qtype_jack_attempt_upgrader_test extends question_attempt_upgrader_test_ba
                 'question' => '3729',
                 'originalquestion' => '0',
                 'seq_number' => '1',
-                'answer' => 'it would be better to point our a \'red colour\' on the number which indicates the questions that we have done wrong. similar to previously, from question 1 to 10, green colour shows the right answer and red colour shows the wrong answer, so that we do not need to click on each answer to find out if it is right or wrong.',
+                'answer' => 'it would be better to point our a \'red colour\' on the number which indicates the questions
+                 that we have done wrong. similar to previously, from question 1 to 10, green colour shows the right answer
+                 and red colour shows the wrong answer, so that we do not need to click on each answer to
+                 find out if it is right or wrong.',
                 'timestamp' => '1179134869',
                 'event' => '2',
                 'grade' => '0',
@@ -396,7 +417,10 @@ class qtype_jack_attempt_upgrader_test extends question_attempt_upgrader_test_ba
                 'question' => '3729',
                 'originalquestion' => '0',
                 'seq_number' => '2',
-                'answer' => 'it would be better to point our a \'red colour\' on the number which indicates the questions that we have done wrong. similar to previously, from question 1 to 10, green colour shows the right answer and red colour shows the wrong answer, so that we do not need to click on each answer to find out if it is right or wrong.',
+                'answer' => 'it would be better to point our a \'red colour\' on the number which indicates the questions
+                 that we have done wrong. similar to previously, from question 1 to 10, green colour shows the right answer
+                 and red colour shows the wrong answer, so that we do not need to click on each answer to find out if it
+                 is right or wrong.',
                 'timestamp' => '1179134869',
                 'event' => '8',
                 'grade' => '0',
@@ -418,7 +442,10 @@ class qtype_jack_attempt_upgrader_test extends question_attempt_upgrader_test_ba
             'flagged' => 0,
             'questionsummary' => "If you answered ‘No’ to the previous question please expand on your problem here.",
             'rightanswer' => '',
-            'responsesummary' => 'it would be better to point our a \'red colour\' on the number which indicates the questions that we have done wrong. similar to previously, from question 1 to 10, green colour shows the right answer and red colour shows the wrong answer, so that we do not need to click on each answer to find out if it is right or wrong.',
+            'responsesummary' => 'it would be better to point our a \'red colour\' on the number which indicates the
+             questions that we have done wrong. similar to previously, from question 1 to 10, green colour shows the
+             right answer and red colour shows the wrong answer, so that we do not need to click on each answer to
+             find out if it is right or wrong.',
             'timemodified' => 1179134869,
             'steps' => array(
                 0 => (object) array(
@@ -435,7 +462,10 @@ class qtype_jack_attempt_upgrader_test extends question_attempt_upgrader_test_ba
                     'fraction' => null,
                     'timecreated' => 1179134869,
                     'userid' => 96864,
-                    'data' => array('answer' => 'it would be better to point our a \'red colour\' on the number which indicates the questions that we have done wrong. similar to previously, from question 1 to 10, green colour shows the right answer and red colour shows the wrong answer, so that we do not need to click on each answer to find out if it is right or wrong.', 'answerformat' => FORMAT_HTML),
+                    'data' => array('answer' => 'it would be better to point our a \'red colour\' on the number which
+                     indicates the questions that we have done wrong. similar to previously, from question 1 to 10,
+                     green colour shows the right answer and red colour shows the wrong answer, so that we do not
+                     need to click on each answer to find out if it is right or wrong.', 'answerformat' => FORMAT_HTML),
                 ),
                 2 => (object) array(
                     'sequencenumber' => 2,
@@ -443,7 +473,10 @@ class qtype_jack_attempt_upgrader_test extends question_attempt_upgrader_test_ba
                     'fraction' => null,
                     'timecreated' => 1179134869,
                     'userid' => 96864,
-                    'data' => array('-finish' => 1, 'answer' => 'it would be better to point our a \'red colour\' on the number which indicates the questions that we have done wrong. similar to previously, from question 1 to 10, green colour shows the right answer and red colour shows the wrong answer, so that we do not need to click on each answer to find out if it is right or wrong.', 'answerformat' => FORMAT_HTML),
+                    'data' => array('-finish' => 1, 'answer' => 'it would be better to point our a \'red colour\' on the
+                     number which indicates the questions that we have done wrong. similar to previously, from question 1
+                     to 10, green colour shows the right answer and red colour shows the wrong answer, so that we do not
+                     need to click on each answer to find out if it is right or wrong.', 'answerformat' => FORMAT_HTML),
                 ),
             ),
         );
@@ -456,8 +489,16 @@ class qtype_jack_attempt_upgrader_test extends question_attempt_upgrader_test_ba
             'id' => '142',
             'course' => '187',
             'name' => 'Questionnaire',
-            'intro' => '<p>B680 is pioneering the use of the eAssessment module in the OU VLE (Virtual Learning Environment). We believe that the module is fit for purpose but we need users\' (students and ALs) experience to confirm this. Your answers to this short questionnaire therefore are of wide importance to the OU VLE Development Programme.  If you could complete this short questionnaire after attempting Practice CTMA04 <b></b>it would be greatly appreciated.</p>
-        <p>The questionnaire has 15 questions and we would like you to answer as many of these as possible.  When you have completed your answers you will see a End test button, similar to the one in Practice CTMA 04, which you will need to click.  This will move you to a Summary page.  Please click the \'Submit all and finish\' button when you are happy to submit your final answers.  <strong>Please complete the questionnaire only once.</strong>  At a later stage the B680 Course Team will analyse the students\' answers to the questions. <br /></p>',
+            'intro' => '<p>B680 is pioneering the use of the eAssessment module in the OU VLE (Virtual Learning Environment). We
+             believe that the module is fit for purpose but we need users\' (students and ALs) experience to confirm this.
+             Your answers to this short questionnaire therefore are of wide importance to the OU VLE Development Programme.
+             If you could complete this short questionnaire after attempting Practice CTMA04
+             <b></b>it would be greatly appreciated.</p>
+             <p>The questionnaire has 15 questions and we would like you to answer as many of these as possible.
+             When you have completed your answers you will see a End test button, similar to the one in Practice CTMA 04,
+             which you will need to click.  This will move you to a Summary page.  Please click the \'Submit all and finish\'
+             button when you are happy to submit your final answers.  <strong>Please complete the questionnaire only once.</strong>
+             At a later stage the B680 Course Team will analyse the students\' answers to the questions. <br /></p>',
             'introformat' => FORMAT_HTML,
             'questiondecimalpoints' => '-1',
             'showuserpicture' => '1',
