@@ -24,8 +24,6 @@
 
 namespace qtype_jack\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy Subsystem for qtype_jack implementing null_provider.
  *
