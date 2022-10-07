@@ -42,6 +42,11 @@ require_once($CFG->dirroot . '/question/type/jack/questiontype.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class questiontype_test extends advanced_testcase {
+    /**
+     * Question type
+     *
+     * @var [object]
+     */
     protected $qtype;
 
     protected function setUp() {
@@ -52,6 +57,11 @@ class questiontype_test extends advanced_testcase {
         $this->qtype = null;
     }
 
+    /**
+     * Get test question data
+     *
+     * @return void
+     */
     protected function get_test_question_data() {
         $q = new stdClass();
         $q->id = 1;

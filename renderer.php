@@ -167,7 +167,7 @@ abstract class qtype_jack_format_renderer_base extends plugin_renderer_base {
      * @param object $context the context teh output belongs to.
      * @return string html to display the response.
      */
-    public abstract function response_area_read_only($name, question_attempt $qa,
+    abstract public function response_area_read_only($name, question_attempt $qa,
             question_attempt_step $step, $lines, $context);
 
     /**
@@ -179,13 +179,13 @@ abstract class qtype_jack_format_renderer_base extends plugin_renderer_base {
      * @param object $context the context teh output belongs to.
      * @return string html to display the response for editing.
      */
-    public abstract function response_area_input($name, question_attempt $qa,
+    abstract public function response_area_input($name, question_attempt $qa,
             question_attempt_step $step, $lines, $context);
 
     /**
      * @return string specific class name to add to the input element.
      */
-    protected abstract function class_name();
+    abstract protected function class_name();
 }
 
 /**
@@ -223,6 +223,16 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
         return 'qtype_jack_editor';
     }
 
+    /**
+     * Response area read only
+     *
+     * @param [mixed] $name
+     * @param [mixed] $qa
+     * @param [mixed] $step
+     * @param [mixed] $lines
+     * @param [mixed] $context
+     * @return object
+     */
     public function response_area_read_only($name, $qa, $step, $lines, $context) {
         return html_writer::tag('div', $this->prepare_response($name, $qa, $step, $context),
                 ['class' => $this->class_name() . ' qtype_jack_response readonly',
@@ -231,6 +241,16 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
         // That seems to give results that look OK.
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [mixed] $name
+     * @param [mixed] $qa
+     * @param [mixed] $step
+     * @param [mixed] $lines
+     * @param [mixed] $context
+     * @return string
+     */
     public function response_area_input($name, $qa, $step, $lines, $context) {
         global $CFG;
         require_once($CFG->dirroot . '/repository/lib.php');
@@ -348,10 +368,25 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_editor_renderer {
+
+    /**
+     * Class name
+     *
+     * @return string
+     */
     protected function class_name() {
         return 'qtype_jack_editorfilepicker';
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [string] $name
+     * @param question_attempt $qa
+     * @param question_attempt_step $step
+     * @param [object] $context
+     * @return string
+     */
     protected function prepare_response($name, question_attempt $qa,
             question_attempt_step $step, $context) {
         if (!$step->has_qt_var($name)) {
@@ -365,6 +400,14 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
         return format_text($text, $step->get_qt_var($name . 'format'), $formatoptions);
     }
 
+    /**
+     * Prepare response for editing
+     *
+     * @param [string] $name
+     * @param question_attempt_step $step
+     * @param [object] $context
+     * @return question_attempt_step
+     */
     protected function prepare_response_for_editing($name,
             question_attempt_step $step, $context) {
         return $step->prepare_response_files_draft_itemid_with_text(
@@ -417,6 +460,13 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
         return question_utils::get_filepicker_options($context, $draftitemid);
     }
 
+    /**
+     * Filepicker html
+     *
+     * @param [string] $inputname
+     * @param [int] $draftitemid
+     * @return string
+     */
     protected function filepicker_html($inputname, $draftitemid) {
         $nonjspickerurl = new moodle_url('/repository/draftfiles_manager.php', array(
             'action' => 'browse',

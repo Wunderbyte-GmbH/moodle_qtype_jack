@@ -55,6 +55,13 @@ class qtype_jack_question extends question_with_responses {
     /** @var int Converted to an actual list of file types in get_filetypeslist **/
     public $filetypeslist;
 
+    /**
+     * Make behaviour
+     *
+     * @param question_attempt $qa
+     * @param [string] $preferredbehaviour
+     * @return void
+     */
     public function make_behaviour(question_attempt $qa, $preferredbehaviour) {
         return question_engine::make_behaviour('manualgraded', $qa, $preferredbehaviour);
     }
@@ -67,6 +74,11 @@ class qtype_jack_question extends question_with_responses {
         return $page->get_renderer('qtype_jack', 'format_' . $this->responseformat);
     }
 
+    /**
+     * Get expected data
+     *
+     * @return void
+     */
     public function get_expected_data() {
         if ($this->responseformat == 'editorfilepicker') {
             $expecteddata = array('answer' => question_attempt::PARAM_RAW_FILES);
@@ -80,6 +92,12 @@ class qtype_jack_question extends question_with_responses {
         return $expecteddata;
     }
 
+    /**
+     * Summarise response
+     *
+     * @param array $response
+     * @return void
+     */
     public function summarise_response(array $response) {
         if (isset($response['answer'])) {
             return question_utils::to_plain_text($response['answer'],
@@ -89,6 +107,12 @@ class qtype_jack_question extends question_with_responses {
         }
     }
 
+    /**
+     * Un summarise response
+     *
+     * @param string $summary
+     * @return void
+     */
     public function un_summarise_response(string $summary) {
         if (!empty($summary)) {
             return ['answer' => text_to_html($summary)];
@@ -97,10 +121,21 @@ class qtype_jack_question extends question_with_responses {
         }
     }
 
+    /**
+     * Get correct response
+     *
+     * @return void
+     */
     public function get_correct_response() {
         return null;
     }
 
+    /**
+     * Is complete response
+     *
+     * @param array $response
+     * @return boolean
+     */
     public function is_complete_response(array $response) {
         // Determine if the given response has online text and attachments.
         $hasinlinetext = array_key_exists('answer', $response) && ($response['answer'] !== '');
@@ -137,6 +172,12 @@ class qtype_jack_question extends question_with_responses {
         return $hascontent && $meetsinlinereq && $meetsattachmentreq;
     }
 
+    /**
+     * Is gradable response
+     *
+     * @param array $response
+     * @return boolean
+     */
     public function is_gradable_response(array $response) {
         // Determine if the given response has online text and attachments.
         if (array_key_exists('answer', $response) && ($response['answer'] !== '')) {
@@ -149,6 +190,13 @@ class qtype_jack_question extends question_with_responses {
         }
     }
 
+    /**
+     * Is same response
+     *
+     * @param array $prevresponse
+     * @param array $newresponse
+     * @return boolean
+     */
     public function is_same_response(array $prevresponse, array $newresponse) {
         if (array_key_exists('answer', $prevresponse) && $prevresponse['answer'] !== $this->responsetemplate) {
             $value1 = (string) $prevresponse['answer'];
@@ -165,6 +213,17 @@ class qtype_jack_question extends question_with_responses {
                 $prevresponse, $newresponse, 'attachments'));
     }
 
+    /**
+     * Check file access
+     *
+     * @param [question_attempt] $qa
+     * @param [question_display_options] $options
+     * @param [string] $component
+     * @param [string] $filearea
+     * @param [array] $args
+     * @param [bool] $forcedownload
+     * @return void
+     */
     public function check_file_access($qa, $options, $component, $filearea, $args, $forcedownload) {
         if ($component == 'question' && $filearea == 'response_attachments') {
             // Response attachments visible if the question has them.
@@ -183,6 +242,11 @@ class qtype_jack_question extends question_with_responses {
         }
     }
 
+    /**
+     * Get filetypeslist
+     *
+     * @return void
+     */
     public function get_filetypeslist() {
         switch ($this->filetypeslist) {
             case 0:

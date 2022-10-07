@@ -29,6 +29,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_test_helper extends question_test_helper {
+
+    /**
+     * Get test questions
+     *
+     * @return array
+     */
     public function get_test_questions() {
         return array('editor', 'editorfilepicker', 'plain', 'monospaced', 'responsetemplate', 'noinline');
     }
@@ -188,6 +194,11 @@ class qtype_jack_test_helper extends question_test_helper {
         return $q;
     }
 
+    /**
+     * Make jack question responsetemplate
+     *
+     * @return qtype_jack_question
+     */
     public function make_jack_question_responsetemplate() {
         $q = $this->initialise_jack_question();
         $q->responsetemplate = 'Once upon a time';
@@ -267,10 +278,10 @@ class qtype_jack_test_helper extends question_test_helper {
     }
 
     /**
-     * Generates a question_file_saver that contains the provided number of attachments. You should ensure
+     * Generates a question_file_saver that contains the provided number of attachments.ou should ensure
      * that a user is logged in with setUser before you run this function.
      *
-     * @param int $:attachments The number of attachments to generate.
+     * @param [int] $attachments The number of attachments to generate.
      * @return question_file_saver a question_file_saver that contains the given amount of dummy files, for use in testing.
      */
     public function make_attachments_saver($attachments) {

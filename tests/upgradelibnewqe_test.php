@@ -15,8 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Tests of the upgrade to the new Moodle question engine for attempts at
- * jack questions.
+ * Tests of the upgrade to the new Moodle question engine for attempts at jack questions.
  *
  * @package    qtype
  * @subpackage jack

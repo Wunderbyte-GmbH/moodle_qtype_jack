@@ -40,6 +40,11 @@ class qtype_jack extends question_type {
         return true;
     }
 
+    /**
+     * Response file areas
+     *
+     * @return void
+     */
     public function response_file_areas() {
         return array('attachments', 'answer');
     }
@@ -56,6 +61,12 @@ class qtype_jack extends question_type {
         $question->ruleset = $jackoptions->ruleset;
     }
 
+    /**
+     * Save question options
+     *
+     * @param [object] $formdata
+     * @return void
+     */
     public function save_question_options($formdata) {
         global $DB;
         $context = $formdata->context;
@@ -98,6 +109,13 @@ class qtype_jack extends question_type {
         $DB->update_record('question_jack', $jackoptions);
     }
 
+    /**
+     * Initialis question instance
+     *
+     * @param question_definition $question
+     * @param [object] $questiondata
+     * @return void
+     */
     protected function initialise_question_instance(question_definition $question, $questiondata) {
         parent::initialise_question_instance($question, $questiondata);
         $question->responseformat = $questiondata->options->responseformat;
@@ -112,6 +130,13 @@ class qtype_jack extends question_type {
         $filetypesutil = new \core_form\filetypes_util();
     }
 
+    /**
+     * Delete question
+     *
+     * @param [mixed] $questionid
+     * @param [int] $contextid
+     * @return void
+     */
     public function delete_question($questionid, $contextid) {
         global $DB;
 
@@ -185,12 +210,25 @@ class qtype_jack extends question_type {
         );
     }
 
+    /**
+     * Lists filetype options
+     *
+     * @return void
+     */
     public function filetypeslist_options() {
         return array(
             0 => 'Java (.jar, .java)'
         );
     }
 
+    /**
+     * Moves files
+     *
+     * @param [int] $questionid
+     * @param [int] $oldcontextid
+     * @param [int] $newcontextid
+     * @return void
+     */
     public function move_files($questionid, $oldcontextid, $newcontextid) {
         parent::move_files($questionid, $oldcontextid, $newcontextid);
         $fs = get_file_storage();
