@@ -20,7 +20,7 @@
  * restore plugin class that provides the necessary information
  * needed to restore one jack qtype plugin
  *
- * @package    moodlecore
+ * @package    qtype_jack
  * @subpackage backup-moodle2
  * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
