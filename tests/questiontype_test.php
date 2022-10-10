@@ -60,7 +60,7 @@ class questiontype_test extends advanced_testcase {
     /**
      * Get test question data
      *
-     * @return void
+     * @return stdClass
      */
     protected function get_test_question_data() {
         $q = new stdClass();

@@ -49,6 +49,14 @@ require_once($CFG->dirroot . '/question/tests/generator/lib.php');
  */
 class walkthrough_test extends qbehaviour_walkthrough_test_base {
 
+    /**
+     * Check contains textares
+     *
+     * @param mixed $name
+     * @param string $content
+     * @param integer $height
+     * @return void
+     */
     protected function check_contains_textarea($name, $content = '', $height = 10) {
         $fieldname = $this->quba->get_field_prefix($this->slot) . $name;
 

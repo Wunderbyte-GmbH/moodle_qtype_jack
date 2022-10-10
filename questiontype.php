@@ -43,12 +43,18 @@ class qtype_jack extends question_type {
     /**
      * Response file areas
      *
-     * @return void
+     * @return array
      */
     public function response_file_areas() {
         return array('attachments', 'answer');
     }
 
+    /**
+     * Get question options
+     *
+     * @param object $question
+     * @return void
+     */
     public function get_question_options($question) {
         global $DB;
         $question->options = $DB->get_record('qtype_jack_options',
@@ -64,7 +70,7 @@ class qtype_jack extends question_type {
     /**
      * Save question options
      *
-     * @param [object] $formdata
+     * @param object $formdata
      * @return void
      */
     public function save_question_options($formdata) {
@@ -113,7 +119,7 @@ class qtype_jack extends question_type {
      * Initialis question instance
      *
      * @param question_definition $question
-     * @param [object] $questiondata
+     * @param object $questiondata
      * @return void
      */
     protected function initialise_question_instance(question_definition $question, $questiondata) {
@@ -133,8 +139,8 @@ class qtype_jack extends question_type {
     /**
      * Delete question
      *
-     * @param [mixed] $questionid
-     * @param [int] $contextid
+     * @param mixed $questionid
+     * @param int $contextid
      * @return void
      */
     public function delete_question($questionid, $contextid) {
@@ -145,11 +151,13 @@ class qtype_jack extends question_type {
         parent::delete_question($questionid, $contextid);
     }
 
-    /**
-     * @return array the different response formats that the question type supports.
-     * internal name => human-readable name.
-     * @throws coding_exception
-     */
+     /**
+      * Response formates
+      *
+      * @return array the different response formats that the question type supports.
+      * internal name => human-readable name.
+      * @throws coding_exception
+      */
     public function response_formats() {
         return array(
             'editor' => get_string('formateditor', 'qtype_jack'),
@@ -213,7 +221,7 @@ class qtype_jack extends question_type {
     /**
      * Lists filetype options
      *
-     * @return void
+     * @return array
      */
     public function filetypeslist_options() {
         return array(
@@ -224,9 +232,9 @@ class qtype_jack extends question_type {
     /**
      * Moves files
      *
-     * @param [int] $questionid
-     * @param [int] $oldcontextid
-     * @param [int] $newcontextid
+     * @param int $questionid
+     * @param int $oldcontextid
+     * @param int $newcontextid
      * @return void
      */
     public function move_files($questionid, $oldcontextid, $newcontextid) {
@@ -248,6 +256,19 @@ class qtype_jack extends question_type {
      * Imports question using information from extra_question_fields function
      * If some of you fields contains id's you'll need to reimplement this
      */
+
+     /**
+      * Imports question from the Moodle XML format
+      *
+      * Imports question using information from extra_question_fields function
+      * If some of you fields contains id's you'll need to reimplement this
+      *
+      * @param mixed $data
+      * @param mixed $question
+      * @param qformat_xml $format
+      * @param mixed $extra
+      * @return bool|object
+      */
     public function import_from_xml($data, $question, qformat_xml $format, $extra=null) {
         $questiontype = $data['@']['type'];
         if ($questiontype != $this->name()) {
@@ -286,12 +307,17 @@ class qtype_jack extends question_type {
         return $qo;
     }
 
-    /*
-     * Export question to the Moodle XML format
-     *
-     * Export question using information from extra_question_fields function
-     * If some of you fields contains id's you'll need to reimplement this
-     */
+     /**
+      * Export question to the Moodle XML format
+      *
+      * Export question using information from extra_question_fields function
+      * If some of you fields contains id's you'll need to reimplement this
+      *
+      * @param mixed $question
+      * @param qformat_xml $format
+      * @param mixed $extra
+      * @return bool|string
+      */
     public function export_to_xml($question, qformat_xml $format, $extra=null) {
         $extraquestionfields = $this->extra_question_fields();
         if (!is_array($extraquestionfields)) {
@@ -337,6 +363,8 @@ class qtype_jack extends question_type {
     }
 
     /**
+     * Extra question fields
+     *
      * If your question type has a table that extends the question table, and
      * you want the base class to automatically save, backup and restore the extra fields,
      * override this method to return an array wherer the first element is the table name,
@@ -360,6 +388,8 @@ class qtype_jack extends question_type {
     }
 
     /**
+     * Extra jack question fields
+     *
      * If your question type has a table that extends the question table, and
      * you want the base class to automatically save, backup and restore the extra fields,
      * override this method to return an array wherer the first element is the table name,

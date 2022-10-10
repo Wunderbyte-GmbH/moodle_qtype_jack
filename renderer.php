@@ -26,6 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+require_once($CFG->dirroot . '/question/type/questionbase.php');
 
 /**
  * Generates the output for jack questions.
@@ -34,6 +35,13 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_renderer extends qtype_renderer {
+    /**
+     * Undocumented function
+     *
+     * @param question_attempt $qa
+     * @param question_display_options $options
+     * @return string
+     */
     public function formulation_and_controls(question_attempt $qa,
             question_display_options $options) {
 
@@ -137,6 +145,13 @@ class qtype_jack_renderer extends qtype_renderer {
                 'value' => $pickeroptions->itemid)) . $text;
     }
 
+    /**
+     * Manual comment
+     *
+     * @param question_attempt $qa
+     * @param question_display_options $options
+     * @return string
+     */
     public function manual_comment(question_attempt $qa, question_display_options $options) {
         if ($options->manualcomment != question_display_options::EDITABLE) {
             return '';
@@ -183,6 +198,8 @@ abstract class qtype_jack_format_renderer_base extends plugin_renderer_base {
             question_attempt_step $step, $lines, $context);
 
     /**
+     * Class name
+     *
      * @return string specific class name to add to the input element.
      */
     abstract protected function class_name();
@@ -197,14 +214,39 @@ abstract class qtype_jack_format_renderer_base extends plugin_renderer_base {
  */
 class qtype_jack_format_noinline_renderer extends plugin_renderer_base {
 
+    /**
+     * Class name
+     *
+     * @return string
+     */
     protected function class_name() {
         return 'qtype_jack_noinline';
     }
 
+    /**
+     * Response area read only
+     *
+     * @param mixed $name
+     * @param mixed $qa
+     * @param mixed $step
+     * @param mixed $lines
+     * @param mixed $context
+     * @return string
+     */
     public function response_area_read_only($name, $qa, $step, $lines, $context) {
         return '';
     }
 
+    /**
+     * Response area input
+     *
+     * @param mixed $name
+     * @param mixed $qa
+     * @param mixed $step
+     * @param mixed $lines
+     * @param mixed $context
+     * @return string
+     */
     public function response_area_input($name, $qa, $step, $lines, $context) {
         return '';
     }
@@ -226,11 +268,11 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
     /**
      * Response area read only
      *
-     * @param [mixed] $name
-     * @param [mixed] $qa
-     * @param [mixed] $step
-     * @param [mixed] $lines
-     * @param [mixed] $context
+     * @param mixed $name
+     * @param mixed $qa
+     * @param mixed $step
+     * @param mixed $lines
+     * @param mixed $context
      * @return object
      */
     public function response_area_read_only($name, $qa, $step, $lines, $context) {
@@ -242,13 +284,13 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
     }
 
     /**
-     * Undocumented function
+     * Response area input
      *
-     * @param [mixed] $name
-     * @param [mixed] $qa
-     * @param [mixed] $step
-     * @param [mixed] $lines
-     * @param [mixed] $context
+     * @param mixed $name
+     * @param mixed $qa
+     * @param mixed $step
+     * @param mixed $lines
+     * @param mixed $context
      * @return string
      */
     public function response_area_input($name, $qa, $step, $lines, $context) {
@@ -301,6 +343,7 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
 
     /**
      * Prepare the response for read-only display.
+     *
      * @param string $name the variable name this input edits.
      * @param question_attempt $qa the question attempt being display.
      * @param question_attempt_step $step the current step.
@@ -321,6 +364,7 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
 
     /**
      * Prepare the response for editing.
+     *
      * @param string $name the variable name this input edits.
      * @param question_attempt_step $step the current step.
      * @param object $context the context the attempt belongs to.
@@ -381,10 +425,10 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
     /**
      * Undocumented function
      *
-     * @param [string] $name
+     * @param string $name
      * @param question_attempt $qa
      * @param question_attempt_step $step
-     * @param [object] $context
+     * @param object $context
      * @return string
      */
     protected function prepare_response($name, question_attempt $qa,
@@ -403,9 +447,9 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
     /**
      * Prepare response for editing
      *
-     * @param [string] $name
+     * @param string $name
      * @param question_attempt_step $step
-     * @param [object] $context
+     * @param object $context
      * @return question_attempt_step
      */
     protected function prepare_response_for_editing($name,
@@ -463,8 +507,8 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
     /**
      * Filepicker html
      *
-     * @param [string] $inputname
-     * @param [int] $draftitemid
+     * @param string $inputname
+     * @param int $draftitemid
      * @return string
      */
     protected function filepicker_html($inputname, $draftitemid) {

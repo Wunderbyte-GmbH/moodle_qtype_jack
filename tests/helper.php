@@ -214,6 +214,7 @@ class qtype_jack_test_helper extends question_test_helper {
 
     /**
      * Makes an jack question without an online text editor.
+     *
      * @return qtype_jack_question
      */
     public function make_jack_question_noinline() {
@@ -287,7 +288,7 @@ class qtype_jack_test_helper extends question_test_helper {
      * Generates a question_file_saver that contains the provided number of attachments.ou should ensure
      * that a user is logged in with setUser before you run this function.
      *
-     * @param [int] $attachments The number of attachments to generate.
+     * @param mixed $attachments The number of attachments to generate.
      * @return question_file_saver a question_file_saver that contains the given amount of dummy files, for use in testing.
      */
     public function make_attachments_saver($attachments) {

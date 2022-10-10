@@ -59,10 +59,10 @@ class qtype_jack_question extends question_with_responses {
      * Make behaviour
      *
      * @param question_attempt $qa
-     * @param [string] $preferredbehaviour
-     * @return void
+     * @param string $preferredbehaviour
+     * @return question_behaviour
      */
-    public function make_behaviour(question_attempt $qa, $preferredbehaviour) {
+    public function make_behaviour(question_attempt $qa, $preferredbehaviour): question_behaviour {
         return question_engine::make_behaviour('manualgraded', $qa, $preferredbehaviour);
     }
 
@@ -77,7 +77,7 @@ class qtype_jack_question extends question_with_responses {
     /**
      * Get expected data
      *
-     * @return void
+     * @return array
      */
     public function get_expected_data() {
         if ($this->responseformat == 'editorfilepicker') {
@@ -96,7 +96,7 @@ class qtype_jack_question extends question_with_responses {
      * Summarise response
      *
      * @param array $response
-     * @return void
+     * @return float|string|null
      */
     public function summarise_response(array $response) {
         if (isset($response['answer'])) {
@@ -111,7 +111,7 @@ class qtype_jack_question extends question_with_responses {
      * Un summarise response
      *
      * @param string $summary
-     * @return void
+     * @return array
      */
     public function un_summarise_response(string $summary) {
         if (!empty($summary)) {
@@ -124,7 +124,7 @@ class qtype_jack_question extends question_with_responses {
     /**
      * Get correct response
      *
-     * @return void
+     * @return null
      */
     public function get_correct_response() {
         return null;
@@ -134,7 +134,7 @@ class qtype_jack_question extends question_with_responses {
      * Is complete response
      *
      * @param array $response
-     * @return boolean
+     * @return bool
      */
     public function is_complete_response(array $response) {
         // Determine if the given response has online text and attachments.
@@ -176,7 +176,7 @@ class qtype_jack_question extends question_with_responses {
      * Is gradable response
      *
      * @param array $response
-     * @return boolean
+     * @return bool
      */
     public function is_gradable_response(array $response) {
         // Determine if the given response has online text and attachments.
@@ -195,7 +195,7 @@ class qtype_jack_question extends question_with_responses {
      *
      * @param array $prevresponse
      * @param array $newresponse
-     * @return boolean
+     * @return bool
      */
     public function is_same_response(array $prevresponse, array $newresponse) {
         if (array_key_exists('answer', $prevresponse) && $prevresponse['answer'] !== $this->responsetemplate) {
@@ -216,13 +216,13 @@ class qtype_jack_question extends question_with_responses {
     /**
      * Check file access
      *
-     * @param [question_attempt] $qa
-     * @param [question_display_options] $options
-     * @param [string] $component
-     * @param [string] $filearea
-     * @param [array] $args
-     * @param [bool] $forcedownload
-     * @return void
+     * @param question_attempt $qa
+     * @param question_display_options $options
+     * @param string $component
+     * @param string $filearea
+     * @param array $args
+     * @param bool $forcedownload
+     * @return bool
      */
     public function check_file_access($qa, $options, $component, $filearea, $args, $forcedownload) {
         if ($component == 'question' && $filearea == 'response_attachments') {
@@ -245,7 +245,7 @@ class qtype_jack_question extends question_with_responses {
     /**
      * Get filetypeslist
      *
-     * @return void
+     * @return array
      */
     public function get_filetypeslist() {
         switch ($this->filetypeslist) {

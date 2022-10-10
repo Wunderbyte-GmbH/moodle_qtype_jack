@@ -36,6 +36,12 @@ use question_edit_form;
  */
 class qtype_jack_edit_form extends question_edit_form {
 
+    /**
+     * Defnitions inner
+     *
+     * @param object $mform
+     * @return void
+     */
     protected function definition_inner($mform) {
         $qtype = question_bank::get_qtype('jack');
 
@@ -83,6 +89,12 @@ class qtype_jack_edit_form extends question_edit_form {
                 array('rows' => 10), $this->editoroptions);
     }
 
+    /**
+     * Data preprocessing
+     *
+     * @param object $question
+     * @return object
+     */
     protected function data_preprocessing($question) {
         $question = parent::data_preprocessing($question);
 

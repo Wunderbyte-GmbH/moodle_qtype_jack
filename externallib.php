@@ -65,8 +65,7 @@ class jack extends external_api {
     /**
      * Method to get next open jack question.
      *
-     * @param {array} params
-     * @return array {array} array of question info data.
+     * @return array array of question info data.
      * @throws dml_exception
      * @throws invalid_parameter_exception
      * @throws required_capability_exception
@@ -195,8 +194,10 @@ class jack extends external_api {
     /**
      * Method to set the result for an jack question.
      *
-     * @param {array} params
-     * @return array {array} array of question info data.
+     * @param mixed $attemptid
+     * @param mixed $grade
+     * @param mixed $feedback
+     * @return array array of question info data.
      * @throws dml_exception
      * @throws invalid_parameter_exception
      * @throws required_capability_exception
