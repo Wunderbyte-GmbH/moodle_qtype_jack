@@ -20,7 +20,7 @@
  * Defines one all purpose capability, that is used to control
  * access to the webservice.
  *
- * @package    qtype
+ * @package    qtype_jack
  * @subpackage jack
  * @author     Benjamin Wolf <support@eledia.de>
  * @copyright  2021 eLeDia GmbH

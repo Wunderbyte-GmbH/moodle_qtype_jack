@@ -17,7 +17,7 @@
 /**
  * Tests of the upgrade to the new Moodle question engine for attempts at jack questions.
  *
- * @package    qtype
+ * @package    qtype_jack
  * @subpackage jack
  * @copyright  2009 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

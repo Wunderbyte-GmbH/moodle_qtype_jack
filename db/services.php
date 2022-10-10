@@ -17,7 +17,7 @@
 /**
  * Function definition for the qtype_jack functions.
  *
- * @package    qtype
+ * @package    qtype_jack
  * @subpackage jack
  * @author     Benjamin Wolf <support@eledia.de>
  * @copyright  2021 eLeDia GmbH

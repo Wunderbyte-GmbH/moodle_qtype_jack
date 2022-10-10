@@ -20,7 +20,7 @@
  * Here you'll find the methods you can directly access through
  * the webservice.
  *
- * @package    qtype
+ * @package    qtype_jack
  * @subpackage jack
  * @author     Benjamin Wolf <support@eledia.de>
  * @copyright  2021 eLeDia GmbH
@@ -148,7 +148,7 @@ class jack extends external_api {
                     if ($options->attachments) {
                         $data->attachments = array();
                         $dm = new question_engine_data_mapper();
-                        $qa = $dm->load_questionattempt($jackattempt->id);
+                        $qa = $dm->load_question_attempt($jackattempt->id);
                         $files = $qa->get_last_qt_files('attachments', $questionusage->contextid);
                         foreach ($files as $file) {
                             $data->attachments[] = array(
