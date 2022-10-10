@@ -49,11 +49,21 @@ class questiontype_test extends advanced_testcase {
      */
     protected $qtype;
 
-    protected function setUp() {
+    /**
+     * Setup
+     *
+     * @return void
+     */
+    protected function setUp(): void {
         $this->qtype = new qtype_jack();
     }
 
-    protected function tearDown() {
+    /**
+     * Tear down
+     *
+     * @return void
+     */
+    protected function tearDown(): void {
         $this->qtype = null;
     }
 
