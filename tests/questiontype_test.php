@@ -26,7 +26,6 @@
 namespace qtype_jack;
 
 use advanced_testcase;
-use qtype_jack;
 use stdClass;
 
 defined('MOODLE_INTERNAL') || die();

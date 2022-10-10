@@ -17,17 +17,22 @@
 /**
  * Question type class for the jack question type.
  *
- * @package    qtype
+ * @package    qtype_jack
  * @subpackage jack
  * @copyright  2005 Mark Nielsen
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_jack;
+
+use qformat_xml;
+use question_definition;
+use question_type;
+use stdClass;
 
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/questionlib.php');
-
 
 /**
  * The jack question type.

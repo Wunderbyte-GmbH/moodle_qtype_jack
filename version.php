@@ -17,7 +17,7 @@
 /**
  * Version information for the jack question type.
  *
- * @package    qtype
+ * @package    qtype_jack
  * @subpackage jack
  * @copyright  2005 Mark Nielsen
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,6 +26,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_jack';
-$plugin->version   = 2022061500;
+$plugin->version   = 2022061501;
 $plugin->requires  = 2020060900;
 $plugin->maturity  = MATURITY_STABLE;
