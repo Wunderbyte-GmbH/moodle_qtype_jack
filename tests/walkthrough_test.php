@@ -246,7 +246,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->check_current_mark(null);
         $this->render();
         $this->assertRegExp('/' . preg_quote(s('Once upon a time there was a little green frog.'), '/') .
-         '/', $this->currentoutput);
+            '/', $this->currentoutput);
         $this->check_current_output(
                 $this->get_contains_question_text_expectation($q),
                 $this->get_contains_general_feedback_expectation($q));

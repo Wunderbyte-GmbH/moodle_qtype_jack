@@ -66,20 +66,11 @@ class qtype_jack_edit_form extends question_edit_form {
                 get_string('allowattachments', 'qtype_jack'), $qtype->attachment_options());
         $mform->setDefault('attachments', 0);
 
-        // $mform->addElement('select', 'attachmentsrequired',
-        // get_string('attachmentsrequired', 'qtype_jack'), $qtype->attachments_required_options());
-        // $mform->setDefault('attachmentsrequired', 0);
-        // $mform->addHelpButton('attachmentsrequired', 'attachmentsrequired', 'qtype_jack');
-        // $mform->disabledIf('attachmentsrequired', 'attachments', 'eq', 0);
-
         $mform->addElement('select', 'filetypeslist',
                            get_string('acceptedfiletypes', 'qtype_jack'),
                            $qtype->filetypeslist_options());
         $mform->setDefault('filetypeslist', 0);
         $mform->disabledIf('filetypeslist', 'attachments', 'eq', 0);
-        // $mform->addElement('filetypes', 'filetypeslist', get_string('acceptedfiletypes', 'qtype_jack'));
-        // $mform->addHelpButton('filetypeslist', 'acceptedfiletypes', 'qtype_jack');
-        // $mform->disabledIf('filetypeslist', 'attachments', 'eq', 0);
 
         $mform->addElement('header', 'responsetemplateheader', get_string('responsetemplateheader', 'qtype_jack'));
         $mform->addElement('textarea', 'responsetemplate', get_string('responsetemplate', 'qtype_jack'),
