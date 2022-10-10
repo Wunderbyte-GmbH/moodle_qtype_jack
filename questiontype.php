@@ -36,6 +36,11 @@ require_once($CFG->libdir . '/questionlib.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack extends question_type {
+    /**
+     * Is manual graded
+     *
+     * @return boolean
+     */
     public function is_manual_graded() {
         return true;
     }
@@ -244,6 +249,13 @@ class qtype_jack extends question_type {
                 $newcontextid, 'qtype_jack', 'graderinfo', $questionid);
     }
 
+    /**
+     * Delete files
+     *
+     * @param int $questionid
+     * @param int $contextid
+     * @return void
+     */
     protected function delete_files($questionid, $contextid) {
         parent::delete_files($questionid, $contextid);
         $fs = get_file_storage();

@@ -36,20 +36,32 @@ require_once($CFG->dirroot . '/question/type/questionbase.php');
  */
 class qtype_jack_question extends question_with_responses {
 
+
+    /** @var mixed */
     public $responseformat;
 
     /** @var int Indicates whether an inline response is required ('0') or optional ('1')  */
     public $responserequired;
 
+    /** @var mixed */
     public $responsefieldlines;
+
+    /** @var mixed */
     public $attachments;
 
     /** @var int The number of attachments required for a response to be complete. */
     public $attachmentsrequired;
 
+    /** @var mixed */
     public $graderinfo;
+
+    /** @var mixed */
     public $graderinfoformat;
+
+    /** @var mixed */
     public $responsetemplate;
+
+    /** @var mixed */
     public $responsetemplateformat;
 
     /** @var int Converted to an actual list of file types in get_filetypeslist **/
@@ -67,8 +79,10 @@ class qtype_jack_question extends question_with_responses {
     }
 
     /**
-     * @param moodle_page the page we are outputting to.
-     * @return qtype_jack_format_renderer_base the response-format-specific renderer.
+     * Get format renderer
+     *
+     * @param moodle_page $page
+     * @return render_base
      */
     public function get_format_renderer(moodle_page $page) {
         return $page->get_renderer('qtype_jack', 'format_' . $this->responseformat);

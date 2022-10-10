@@ -128,6 +128,11 @@ class qtype_jack_edit_form extends question_edit_form {
         return $question;
     }
 
+    /**
+     * Qtype
+     *
+     * @return string
+     */
     public function qtype() {
         return 'jack';
     }

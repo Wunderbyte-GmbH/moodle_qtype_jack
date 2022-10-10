@@ -23,6 +23,18 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_jack;
+
+use form_filemanager;
+use html_writer;
+use moodle_url;
+use plugin_renderer_base;
+use qtype_renderer;
+use question_attempt;
+use question_attempt_step;
+use question_display_options;
+use question_utils;
+use stdClass;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -166,8 +178,7 @@ class qtype_jack_renderer extends qtype_renderer {
 
 
 /**
- * A base class to abstract out the differences between different type of
- * response format.
+ * A base class to abstract out the differences between different type of response format.
  *
  * @copyright  2011 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -206,8 +217,7 @@ abstract class qtype_jack_format_renderer_base extends plugin_renderer_base {
 }
 
 /**
- * An jack format renderer for jacks where the student should not enter
- * any inline response.
+ * An jack format renderer for jacks where the student should not enter any inline response.
  *
  * @copyright  2013 Binghamton University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -254,8 +264,7 @@ class qtype_jack_format_noinline_renderer extends plugin_renderer_base {
 }
 
 /**
- * An jack format renderer for jacks where the student should use the HTML
- * editor without the file picker.
+ * An jack format renderer for jacks where the student should use the HTML editor without the file picker.
  *
  * @copyright  2011 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -405,8 +414,7 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
 
 
 /**
- * An jack format renderer for jacks where the student should use the HTML
- * editor with the file picker.
+ * An jack format renderer for jacks where the student should use the HTML editor with the file picker.
  *
  * @copyright  2011 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -460,6 +468,7 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
 
     /**
      * Get editor options for question response text area.
+     *
      * @param object $context the context the attempt belongs to.
      * @return array options for the editor.
      */
@@ -468,13 +477,13 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
     }
 
     /**
-     * Get the options required to configure the filepicker for one of the editor
-     * toolbar buttons.
+     * Get the options required to configure the filepicker for one of the editor toolbar buttons.
+     *
      * @deprecated since 3.5
      * @param mixed $acceptedtypes array of types of '*'.
      * @param int $draftitemid the draft area item id.
      * @param object $context the context.
-     * @return object the required options.
+     * @return array the required options.
      */
     protected function specific_filepicker_options($acceptedtypes, $draftitemid, $context) {
         debugging('qtype_jack_format_editorfilepicker_renderer::specific_filepicker_options() is deprecated, ' .
@@ -496,6 +505,8 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
     }
 
     /**
+     * Get filepicker options
+     *
      * @param object $context the context the attempt belongs to.
      * @param int $draftitemid draft item id.
      * @return array filepicker options for the editor.
@@ -532,8 +543,7 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
 
 
 /**
- * An jack format renderer for jacks where the student should use a plain
- * input box, but with a normal, proportional font.
+ * An jack format renderer for jacks where the student should use a plain input box, but with a normal, proportional font.
  *
  * @copyright  2011 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -549,14 +559,40 @@ class qtype_jack_format_plain_renderer extends plugin_renderer_base {
         return html_writer::tag('textarea', s($response), $attributes);
     }
 
+
+    /**
+     * Class name
+     *
+     * @return string
+     */
     protected function class_name() {
         return 'qtype_jack_plain';
     }
 
+    /**
+     * Response area read only
+     *
+     * @param mixed $name
+     * @param mixed $qa
+     * @param mixed $step
+     * @param mixed $lines
+     * @param mixed $context
+     * @return string
+     */
     public function response_area_read_only($name, $qa, $step, $lines, $context) {
         return $this->textarea($step->get_qt_var($name), $lines, array('readonly' => 'readonly'));
     }
 
+    /**
+     * Response area input
+     *
+     * @param mixed $name
+     * @param mixed $qa
+     * @param mixed $step
+     * @param mixed $lines
+     * @param mixed $context
+     * @return void
+     */
     public function response_area_input($name, $qa, $step, $lines, $context) {
         $inputname = $qa->get_qt_field_name($name);
         return $this->textarea($step->get_qt_var($name), $lines, array('name' => $inputname)) .
@@ -567,9 +603,9 @@ class qtype_jack_format_plain_renderer extends plugin_renderer_base {
 
 
 /**
- * An jack format renderer for jacks where the student should use a plain
- * input box with a monospaced font. You might use this, for example, for a
- * question where the students should type computer code.
+ * An jack format renderer for jacks where the student should use a plain input box with a monospaced font.
+ *
+ * You might use this, for example, for a question where the students should type computer code.
  *
  * @copyright  2011 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
