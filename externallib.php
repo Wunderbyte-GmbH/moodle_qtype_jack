@@ -48,6 +48,9 @@ require_once($CFG->libdir.'/externallib.php');
 require_once($CFG->libdir.'/questionlib.php');
 require_once($CFG->dirroot.'/question/engine/datalib.php');
 
+/**
+ * Jack
+ */
 class jack extends external_api {
 
     /**

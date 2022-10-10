@@ -15,15 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    moodlecore
- * @subpackage backup-moodle2
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
-/**
  * Provides the information to backup jack questions
  *
+ * @package    moodlecore
+ * @subpackage backup-moodle2
  * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -68,10 +63,13 @@ class backup_qtype_jack_plugin extends backup_qtype_plugin {
     }
 
     /**
-     * Returns one array with filearea => mappingname elements for the qtype
+     * Get qtype fileareas
      *
-     * Used by {@link get_components_and_fileareas} to know about all the qtype
+     * Returns one array with filearea => mappingname elements for the qtype
+     * Used by get_components_and_fileareas to know about all the qtype
      * files to be processed both in backup and restore.
+     *
+     * @return array
      */
     public static function get_qtype_fileareas() {
         return array(

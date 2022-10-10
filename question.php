@@ -23,6 +23,15 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_jack;
+
+use moodle_page;
+use question_attempt;
+use question_behaviour;
+use question_engine;
+use question_response_files;
+use question_utils;
+use question_with_responses;
 
 defined('MOODLE_INTERNAL') || die();
 

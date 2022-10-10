@@ -17,16 +17,11 @@
 /**
  * backup-moodle2
  *
- * @package    moodlecore
- * @subpackage backup-moodle2
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
-/**
  * restore plugin class that provides the necessary information
  * needed to restore one jack qtype plugin
  *
+ * @package    moodlecore
+ * @subpackage backup-moodle2
  * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -43,6 +38,9 @@ class restore_qtype_jack_plugin extends restore_qtype_plugin {
 
     /**
      * Process the qtype/jack element
+     *
+     * @param mixed $data
+     * @return void
      */
     public function process_jack($data) {
         global $DB;

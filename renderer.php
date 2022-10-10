@@ -385,6 +385,8 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
     }
 
     /**
+     * Get editor options
+     *
      * @param object $context the context the attempt belongs to.
      * @return array options for the editor.
      */
@@ -394,6 +396,8 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
     }
 
     /**
+     * Get filepicker options
+     *
      * @param object $context the context the attempt belongs to.
      * @param int $draftitemid draft item id.
      * @return array filepicker options for the editor.
@@ -403,6 +407,8 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
     }
 
     /**
+     * Filepicker HTML
+     *
      * @param string $inputname input field name.
      * @param int $draftitemid draft file area itemid.
      * @return string HTML for the filepicker, if used.

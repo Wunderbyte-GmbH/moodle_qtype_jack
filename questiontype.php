@@ -174,6 +174,8 @@ class qtype_jack extends question_type {
     }
 
     /**
+     * Response required options
+     *
      * @return array the choices that should be offerd when asking if a response is required
      * @throws coding_exception
      */
@@ -185,6 +187,8 @@ class qtype_jack extends question_type {
     }
 
     /**
+     * Response sizes
+     *
      * @return array the choices that should be offered for the input box size.
      * @throws coding_exception
      */
@@ -197,6 +201,8 @@ class qtype_jack extends question_type {
     }
 
     /**
+     * Attachment options
+     *
      * @return array the choices that should be offered for the number of attachments.
      * @throws coding_exception
      */
@@ -211,6 +217,8 @@ class qtype_jack extends question_type {
     }
 
     /**
+     * Attachments required options
+     *
      * @return array the choices that should be offered for the number of required attachments.
      * @throws coding_exception
      */
@@ -261,13 +269,6 @@ class qtype_jack extends question_type {
         $fs = get_file_storage();
         $fs->delete_area_files($contextid, 'qtype_jack', 'graderinfo', $questionid);
     }
-
-    /*
-     * Imports question from the Moodle XML format
-     *
-     * Imports question using information from extra_question_fields function
-     * If some of you fields contains id's you'll need to reimplement this
-     */
 
      /**
       * Imports question from the Moodle XML format
