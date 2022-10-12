@@ -66,7 +66,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
                 $this->currentoutput);
 
         if ($content) {
-            $this->assertRegExp('/' . preg_quote(s($content), '/') . '/', $this->currentoutput);
+            $this->assertMatchesRegularExpression('/' . preg_quote(s($content), '/') . '/', $this->currentoutput);
         }
     }
 
@@ -144,7 +144,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$needsgrading);
         $this->check_current_mark(null);
         $this->render();
-        $this->assertRegExp('/' . preg_quote($response, '/') . '/', $this->currentoutput);
+        $this->assertMatchesRegularExpression('/' . preg_quote($response, '/') . '/', $this->currentoutput);
         $this->check_current_output(
                 $this->get_contains_question_text_expectation($q),
                 $this->get_contains_general_feedback_expectation($q));
@@ -196,7 +196,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$needsgrading);
         $this->check_current_mark(null);
         $this->render();
-        $this->assertRegExp('/' . preg_quote(s($response), '/') . '/', $this->currentoutput);
+        $this->assertMatchesRegularExpression('/' . preg_quote(s($response), '/') . '/', $this->currentoutput);
         $this->check_current_output(
                 $this->get_contains_question_text_expectation($q),
                 $this->get_contains_general_feedback_expectation($q));
@@ -253,7 +253,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$needsgrading);
         $this->check_current_mark(null);
         $this->render();
-        $this->assertRegExp('/' . preg_quote(s('Once upon a time there was a little green frog.'), '/') .
+        $this->assertMatchesRegularExpression('/' . preg_quote(s('Once upon a time there was a little green frog.'), '/') .
             '/', $this->currentoutput);
         $this->check_current_output(
                 $this->get_contains_question_text_expectation($q),
@@ -271,6 +271,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
+        /** @var testing_data_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $generator->create_question_category();
         $question = $generator->create_question('jack', 'editorfilepicker', array('category' => $cat->id));
@@ -395,6 +396,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
+        /** @var testing_data_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $generator->create_question_category();
         $question = $generator->create_question('jack', 'editorfilepicker', array('category' => $cat->id));
@@ -456,7 +458,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         // Check the display.
         $this->load_quba();
         $this->render();
-        $this->assertRegExp('/I refuse to draw you a picture, so there!/', $this->currentoutput);
+        $this->assertMatchesRegularExpression('/I refuse to draw you a picture, so there!/', $this->currentoutput);
     }
 
     public function test_deferred_feedback_plain_attempt_on_last() {
@@ -467,6 +469,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $usercontextid = context_user::instance($USER->id)->id;
 
         // Create an jack question in the DB.
+        /** @var testing_data_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $generator->create_question_category();
         $question = $generator->create_question('jack', 'plain', array('category' => $cat->id));
@@ -518,7 +521,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->load_quba();
         $this->render();
         // Test taht no HTML comment has been added to the response.
-        $this->assertRegExp('/Once upon a time there was a frog called Freddy. He lived happily ever after.(?!&lt;!--)/',
+        $this->assertMatchesRegularExpression('/Once upon a time there was a frog called Freddy. He lived happily ever after.(?!&lt;!--)/',
          $this->currentoutput);
         // Test for the hash of an empty file area.
         $this->assertNotContains('d41d8cd98f00b204e9800998ecf8427e', $this->currentoutput);
@@ -535,6 +538,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
+        /** @var testing_data_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $generator->create_question_category();
         $question = $generator->create_question('jack', 'editorfilepicker', array('category' => $cat->id));
@@ -594,6 +598,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
+        /** @var testing_data_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $generator->create_question_category();
         $question = $generator->create_question('jack', 'editorfilepicker', array('category' => $cat->id));

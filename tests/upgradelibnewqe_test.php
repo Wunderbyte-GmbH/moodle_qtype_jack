@@ -227,7 +227,7 @@ class upgradelibnewqe_test extends question_attempt_upgrader_test_base {
             'maxfraction' => 1,
             'flagged' => 0,
             'questionsummary' => "Give two examples of facilities within XML schemas that cannot be found in Document Type
-             Definitions (DTDs).\n_(2 marks)_",
+                Definitions (DTDs).\n_(2 marks)_",
             'rightanswer' => '',
             'responsesummary' => "Variable can be typed \n\nxml Schemas fully support Namespaces",
             'timemodified' => 1273068477,

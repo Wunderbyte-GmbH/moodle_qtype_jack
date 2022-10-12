@@ -26,6 +26,7 @@
 namespace qtype_jack;
 
 use advanced_testcase;
+use qtype_jack_test_helper;
 use question_attempt_step;
 use test_question_maker;
 
@@ -43,20 +44,23 @@ require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
  */
 class question_test extends advanced_testcase {
     public function test_get_question_summary() {
-        $jack = test_question_maker::make_an_jack_question();
+        $jackclass = new qtype_jack_test_helper();
+        $jack = $jackclass->make_jack_question_plain();
         $jack->questiontext = 'Hello <img src="http://example.com/globe.png" alt="world" />';
         $this->assertEquals('Hello [world]', $jack->get_question_summary());
     }
 
     public function test_summarise_response() {
         $longstring = str_repeat('0123456789', 50);
-        $jack = test_question_maker::make_an_jack_question();
+        $jackclass = new qtype_jack_test_helper();
+        $jack = $jackclass->make_jack_question_plain();
         $this->assertEquals($longstring, $jack->summarise_response(
                 array('answer' => $longstring, 'answerformat' => FORMAT_HTML)));
     }
 
     public function test_is_same_response() {
-        $jack = test_question_maker::make_an_jack_question();
+        $jackclass = new qtype_jack_test_helper();
+        $jack = $jackclass->make_jack_question_plain();
 
         $jack->responsetemplate = '';
 
@@ -100,8 +104,8 @@ class question_test extends advanced_testcase {
     }
 
     public function test_is_same_response_with_template() {
-        $jack = test_question_maker::make_an_jack_question();
-
+        $jackclass = new qtype_jack_test_helper();
+        $jack = $jackclass->make_jack_question_plain();
         $jack->responsetemplate = 'Once upon a time';
 
         $jack->start_attempt(new question_attempt_step(), 1);
@@ -151,14 +155,16 @@ class question_test extends advanced_testcase {
         $this->setUser($user);
 
         // Create sample attachments to use in testing.
-        $helper = test_question_maker::get_test_helper('jack');
+        /** @var qtype_jack_test_helper $helper */
+        $helper = test_question_maker::get_test_helper('qtype_jack');
         $attachments = array();
         for ($i = 0; $i < 4; ++$i) {
             $attachments[$i] = $helper->make_attachments_saver($i);
         }
 
         // Create the jack question under test.
-        $jack = test_question_maker::make_an_jack_question();
+        $jackclass = new qtype_jack_test_helper();
+        $jack = $jackclass->make_jack_question_plain();
         $jack->start_attempt(new question_attempt_step(), 1);
 
         // Test the "traditional" case, where we must recieve a response from the user.
