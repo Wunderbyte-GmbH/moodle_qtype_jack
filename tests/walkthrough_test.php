@@ -39,6 +39,8 @@ defined('MOODLE_INTERNAL') || die();
 global $CFG;
 require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
 require_once($CFG->dirroot . '/question/tests/generator/lib.php');
+require_once($CFG->dirroot . '/question/type/jack/question.php');
+require_once($CFG->dirroot . '/question/type/jack/questiontype.php');
 
 
 /**

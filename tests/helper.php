@@ -14,6 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+defined('MOODLE_INTERNAL') || die();
+
+global $CFG;
+require_once($CFG->dirroot . '/question/type/jack/question.php');
+require_once($CFG->dirroot . '/question/type/jack/questiontype.php');
+
 /**
  * Test helpers for the jack question type.
  *
