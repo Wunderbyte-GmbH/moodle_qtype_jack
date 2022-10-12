@@ -22,25 +22,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace qtype_jack;
-
-use coding_exception;
-use context_system;
-use context_user;
-use qbehaviour_walkthrough_test_base;
-use question_bank;
-use question_engine;
-use question_state;
-use stdClass;
-use test_question_maker;
-
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
 require_once($CFG->dirroot . '/question/tests/generator/lib.php');
-require_once($CFG->dirroot . '/question/type/jack/question.php');
-require_once($CFG->dirroot . '/question/type/jack/questiontype.php');
 
 
 /**
@@ -523,7 +509,8 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->load_quba();
         $this->render();
         // Test taht no HTML comment has been added to the response.
-        $this->assertMatchesRegularExpression('/Once upon a time there was a frog called Freddy. He lived happily ever after.(?!&lt;!--)/',
+        $this->assertMatchesRegularExpression('/Once upon a time there was a frog called Freddy. He lived happily ever after.
+            (?!&lt;!--)/',
          $this->currentoutput);
         // Test for the hash of an empty file area.
         $this->assertNotContains('d41d8cd98f00b204e9800998ecf8427e', $this->currentoutput);

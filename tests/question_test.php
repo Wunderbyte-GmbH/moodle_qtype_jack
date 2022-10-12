@@ -23,18 +23,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace qtype_jack;
-
-use advanced_testcase;
-use qtype_jack_test_helper;
-use question_attempt_step;
-use test_question_maker;
-
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
 require_once($CFG->dirroot . '/question/type/jack/tests/helper.php');
+
 
 /**
  * Unit tests for the matching question definition class.
@@ -163,8 +157,7 @@ class question_test extends advanced_testcase {
         }
 
         // Create the jack question under test.
-        $jackclass = new qtype_jack_test_helper();
-        $jack = $jackclass->make_jack_question_plain();
+        $jack = $helper->make_jack_question_editorfilepickertworequired();
         $jack->start_attempt(new question_attempt_step(), 1);
 
         // Test the "traditional" case, where we must recieve a response from the user.
