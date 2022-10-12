@@ -156,7 +156,7 @@ class question_test extends advanced_testcase {
 
         // Create sample attachments to use in testing.
         /** @var qtype_jack_test_helper $helper */
-        $helper = test_question_maker::get_test_helper('qtype_jack');
+        $helper = test_question_maker::get_test_helper('jack');
         $attachments = array();
         for ($i = 0; $i < 4; ++$i) {
             $attachments[$i] = $helper->make_attachments_saver($i);
