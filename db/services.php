@@ -28,20 +28,39 @@ defined('MOODLE_INTERNAL') || die();
 
 $functions = array(
     'qtype_jack_get_next_jack_question' => array(
-        'classname' => 'jack',
-        'methodname' => 'get_next_jack_question',
+        'classname' => 'qtype_jack_external',
+        'methodname' => 'get_next_jackquestion',
         'classpath' => 'question/type/jack/externallib.php',
         'description' => 'provides the next jack question which needs grading',
         'type' => 'read',
         'capabilities' => 'qtype/jack:access',
+        'services' => array(
+            'qtype_jack_external'
+        )
     ),
     'qtype_jack_set_jack_question_result' => array(
-    'classname' => 'jack',
-    'methodname' => 'set_jack_question_result',
-    'classpath' => 'question/type/jack/externallib.php',
-    'description' => 'set the results for one jack question',
-    'type' => 'read',
-    'capabilities' => 'qtype/jack:access',
+        'classname' => 'qtype_jack_external',
+        'methodname' => 'set_jackquestion_result',
+        'classpath' => 'question/type/jack/externallib.php',
+        'description' => 'set the results for one jack question',
+        'type' => 'read',
+        'capabilities' => 'qtype/jack:access',
+        'services' => array(
+            'qtype_jack_external'
+        )
     )
 );
 
+$services = array(
+    'qtype Jack external' => array(
+        'functions' => array (
+            'qtype_jack_get_next_jack_question',
+            'qtype_jack_set_jack_question_result'
+        ),
+        'restrictedusers' => 0,
+        'enabled' => 1,
+        'shortname' => 'qtype_jack_external',
+        'downloadfiles' => 1,    // Allow file downloads.
+        'uploadfiles'  => 1,      // Allow file uploads.
+    )
+);
