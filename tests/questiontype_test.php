@@ -23,12 +23,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace qtype_jack;
-
-use advanced_testcase;
-use qtype_jack;
-use stdClass;
-
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
