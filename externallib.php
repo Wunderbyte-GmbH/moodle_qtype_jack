@@ -27,21 +27,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace qtype_jack;
-
-use context_module;
-use context_system;
-use Exception;
-use external_api;
-use external_files;
-use external_function_parameters;
-use external_single_structure;
-use external_value;
-use question_engine;
-use question_engine_data_mapper;
-use question_file_loader;
-use stdClass;
-
 defined('MOODLE_INTERNAL') || die;
 
 require_once($CFG->libdir.'/externallib.php');
