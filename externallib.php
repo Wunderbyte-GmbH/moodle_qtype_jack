@@ -36,7 +36,7 @@ require_once($CFG->dirroot.'/question/engine/datalib.php');
 /**
  * Jack
  */
-class qtype_jack_external extends external_api {
+class jack extends external_api {
 
     /**
      * Parameterdefinition for method "get_next_jackquestion"

@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $functions = array(
     'qtype_jack_get_next_jack_question' => array(
-        'classname' => 'qtype_jack_external',
+        'classname' => 'jack',
         'methodname' => 'get_next_jackquestion',
         'classpath' => 'question/type/jack/externallib.php',
         'description' => 'provides the next jack question which needs grading',
@@ -39,7 +39,7 @@ $functions = array(
         )
     ),
     'qtype_jack_set_jack_question_result' => array(
-        'classname' => 'qtype_jack_external',
+        'classname' => 'jack',
         'methodname' => 'set_jackquestion_result',
         'classpath' => 'question/type/jack/externallib.php',
         'description' => 'set the results for one jack question',
