@@ -1,5 +1,5 @@
 @qtype @qtype_jack
-Feature: Test duplicating a quiz containing an Assay question
+Feature: Test duplicating a quiz using a jack question type
   As a teacher
   In order re-use my courses containing jack questions
   I need to be able to backup and restore them
@@ -38,25 +38,25 @@ Feature: Test duplicating a quiz containing an Assay question
     And I should see "jack-003"
     And I choose "Edit question" action for "jack-001" in the question bank
     Then the following fields match these values:
-      | Question name              | jack-001                                               |
+      | Question name              | jack-001                                                |
       | Question text              | Please write a story about a frog.                      |
       | General feedback           | I hope your story had a beginning, a middle and an end. |
       | Testdrive                  | x                                                       |
-      | Rule set                    | y                                                       |
+      | Rule set                    | y                                                      |
 
     And I press "Cancel"
     And I choose "Edit question" action for "jack-002" in the question bank
     Then the following fields match these values:
-      | Question name              | jack-002                                               |
+      | Question name              | jack-002                                                |
       | Question text              | Please write a story about a frog.                      |
       | General feedback           | I hope your story had a beginning, a middle and an end. |
       | Testdrive                  | x                                                       |
-      | Rule set                    | y                                                       |
+      | Rule set                   | y                                                       |
 
     And I press "Cancel"
     And I choose "Edit question" action for "jack-003" in the question bank
     Then the following fields match these values:
-      | Question name              | jack-003                                               |
+      | Question name              | jack-003                                                |
       | Question text              | Please write a story about a frog.                      |
       | General feedback           | I hope your story had a beginning, a middle and an end. |
       | Testdrive                  | x                                                       |
