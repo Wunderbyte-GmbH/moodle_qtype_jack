@@ -17,8 +17,7 @@
 /**
  * Defines the editing form for the jack question type.
  *
- * @package    qtype
- * @subpackage jack
+ * @package    qtype_jack
  * @copyright  2007 Jamie Pratt me@jamiep.org
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

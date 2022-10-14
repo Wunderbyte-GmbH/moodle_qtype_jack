@@ -259,7 +259,13 @@ class qtype_jack_format_noinline_renderer extends plugin_renderer_base {
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_format_editor_renderer extends plugin_renderer_base {
-    protected function class_name() {
+
+    /**
+     * Return the class name of this class.
+     *
+     * @return string class name
+     */
+    protected function class_name(): string {
         return 'qtype_jack_editor';
     }
 
@@ -545,7 +551,12 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
  */
 class qtype_jack_format_plain_renderer extends plugin_renderer_base {
     /**
-     * @return string the HTML for the textarea.
+     * Get text of textarea
+     *
+     * @param string $response
+     * @param int $lines
+     * @param array $attributes
+     * @return string the HTML for the textarea.oid
      */
     protected function textarea($response, $lines, $attributes) {
         $attributes['class'] = $this->class_name() . ' qtype_jack_response';
@@ -606,7 +617,13 @@ class qtype_jack_format_plain_renderer extends plugin_renderer_base {
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_format_monospaced_renderer extends qtype_jack_format_plain_renderer {
-    protected function class_name() {
+
+    /**
+     * Return class name
+     *
+     * @return string
+     */
+    protected function class_name(): string {
         return 'qtype_jack_monospaced';
     }
 }
