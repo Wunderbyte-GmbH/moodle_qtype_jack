@@ -18,10 +18,10 @@ Feature: Preview jack questions
       | contextlevel | reference | name           |
       | Course       | C1        | Test questions |
     And the following "questions" exist:
-      | questioncategory | qtype | name      | template         |
-      | Test questions   | jack | jack-001 | editor           |
-      | Test questions   | jack | jack-002 | editorfilepicker |
-      | Test questions   | jack | jack-003 | plain            |
+      | questioncategory | qtype | name      | template         | testdriver | ruleset |
+      | Test questions   | jack | jack-001 | editor           | x | y |
+      | Test questions   | jack | jack-002 | editorfilepicker | x | y |
+      | Test questions   | jack | jack-003 | plain            | x | y |
     Given I log in as "teacher1"
     And I am on "Course 1" course homepage
     And I navigate to "Question bank" in current page administration

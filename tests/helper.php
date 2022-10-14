@@ -15,9 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 
+/**
+ * Unit tests for the jack question definition class.
+ *
+ * @package    qtype_jack
+ * @subpackage jack
+ * @copyright  2009 The Open University
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
+require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
 require_once($CFG->dirroot . '/question/type/jack/question.php');
 require_once($CFG->dirroot . '/question/type/jack/questiontype.php');
 
@@ -87,6 +97,8 @@ class qtype_jack_test_helper extends question_test_helper {
         $fromform->generalfeedback =
             array('text' => 'I hope your story had a beginning, a middle and an end.',
             'format' => FORMAT_HTML);
+        $fromform->testdriver = 'x';
+        $fromform->ruleset = 'x';
         $fromform->responseformat = 'editor';
         $fromform->responserequired = 1;
         $fromform->responsefieldlines = 10;

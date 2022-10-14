@@ -57,7 +57,7 @@ $services = array(
             'qtype_jack_get_next_jack_question',
             'qtype_jack_set_jack_question_result'
         ),
-        'restrictedusers' => 0,
+        'restrictedusers' => 1,
         'enabled' => 1,
         'shortname' => 'qtype_jack_external',
         'downloadfiles' => 1,    // Allow file downloads.

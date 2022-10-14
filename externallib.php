@@ -103,21 +103,21 @@ class jack extends external_api {
         $jackquestions = $DB->get_records('question', array('qtype' => 'jack'));
 
         foreach ($jackquestions as $jackquestion) {
-            $jackattempts = $DB->get_records('questionattempts', array('questionid' => $jackquestion->id));
+            $jackattempts = $DB->get_records('question_attempts', array('questionid' => $jackquestion->id));
             foreach ($jackattempts as $jackattempt) {
 
                 // Check for preview attempt.
-                $questionusage = $DB->get_record('questionusages', array('id' => $jackattempt->questionusageid));
+                $questionusage = $DB->get_record('question_usages', array('id' => $jackattempt->questionusageid));
                 if ($questionusage->component == 'core_question_preview') {
                     continue; // We dont want to grade previews here.
                 }
 
                 // Check for steps.
                 $laststepsql = "SELECT MAX(sequencenumber) AS sequence
-                FROM {questionattemptsteps}
+                FROM {question_attempt_steps}
                 WHERE questionattemptid = $jackattempt->id";
                 $lastsequence = $DB->get_records_sql($laststepsql);
-                $laststep = $DB->get_record('questionattemptsteps',
+                $laststep = $DB->get_record('question_attempt_steps',
                     array('questionattemptid' => $jackattempt->id,
                     'sequencenumber' => current($lastsequence)->sequence));
 
@@ -126,7 +126,7 @@ class jack extends external_api {
                     $data = new stdClass();
                     $data->attemptid = $jackattempt->id;
                     // Get submitted data.
-                    $completionstep = $DB->get_record('questionattemptsteps',
+                    $completionstep = $DB->get_record('question_attempt_steps',
                         array('questionattemptid' => $jackattempt->id, 'state' => 'complete'));
                     $options = $DB->get_record('qtype_jack_options',
                         array('questionid' => $jackquestion->id));
@@ -147,7 +147,7 @@ class jack extends external_api {
                             );
                         }
                     } else {
-                        $submission = $DB->get_record('questionattempt_step_data',
+                        $submission = $DB->get_record('question_attempt_step_data',
                             array('attemptstepid' => $completionstep->id, 'name' => 'answer'));
                         $data->submission = $submission->value;
                     }
@@ -208,12 +208,12 @@ class jack extends external_api {
         );
 
         try {
-            $questionattempt = $DB->get_record('questionattempts', array('id' => $attemptid));
-            $questionattemptsteps = $DB->get_record('questionattemptsteps',
+            $questionattempt = $DB->get_record('question_attempts', array('id' => $attemptid));
+            $questionattemptsteps = $DB->get_record('question_attempt_steps',
                 array('questionattemptid' => $attemptid, 'state' => 'needsgrading'));
             $data = array('answer' => ' ');
-            $step = new questionattempt_step_read_only($data, time(), $questionattemptsteps->userid);
-            $questionusage = $DB->get_record('questionusages', array('id' => $questionattempt->questionusageid));
+            $step = new question_attempt_step_read_only($data, time(), $questionattemptsteps->userid);
+            $questionusage = $DB->get_record('question_usages', array('id' => $questionattempt->questionusageid));
             $contextrec = $DB->get_record('context', array('id' => $questionusage->contextid));
             $cm = $DB->get_record('course_modules', array('id' => $contextrec->instanceid));
             $context = context_module::instance($cm->id);

@@ -18,10 +18,10 @@ Feature: Test exporting jack questions
       | contextlevel | reference | name           |
       | Course       | C1        | Test questions |
     And the following "questions" exist:
-      | questioncategory | qtype | name      | template         |
-      | Test questions   | jack | jack-001 | editor           |
-      | Test questions   | jack | jack-002 | editorfilepicker |
-      | Test questions   | jack | jack-003 | plain            |
+      | questioncategory | qtype | name      | template         | testdriver | ruleset |
+      | Test questions   | jack | jack-001 | editor           | x | y |
+      | Test questions   | jack | jack-002 | editorfilepicker | x | y |
+      | Test questions   | jack | jack-003 | plain            | x | y |
     And I log in as "teacher1"
     And I am on "Course 1" course homepage
 
@@ -29,7 +29,7 @@ Feature: Test exporting jack questions
     When I navigate to "Question bank > Export" in current page administration
     And I set the field "id_format_xml" to "1"
     And I press "Export questions to file"
-    Then following "click here" should download between "2600" and "2850" bytes
+    Then following "click here" should download between "2600" and "3500" bytes
     # If the download step is the last in the scenario then we can sometimes run
     # into the situation where the download page causes a http redirect but behat
     # has already conducted its reset (generating an error). By putting a logout

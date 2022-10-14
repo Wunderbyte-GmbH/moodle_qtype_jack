@@ -18,10 +18,10 @@ Feature: Test editing an jack question
       | contextlevel | reference | name           |
       | Course       | C1        | Test questions |
     And the following "questions" exist:
-      | questioncategory | qtype | name      | template         |
-      | Test questions   | jack | jack-001 | editor           |
-      | Test questions   | jack | jack-002 | editorfilepicker |
-      | Test questions   | jack | jack-003 | plain            |
+      | questioncategory | qtype | name      | template         | testdriver | ruleset |
+      | Test questions   | jack | jack-001 | editor           | x | y |
+      | Test questions   | jack | jack-002 | editorfilepicker | x | y |
+      | Test questions   | jack | jack-003 | plain            | x | y |
     And I log in as "teacher1"
     And I am on "Course 1" course homepage
     And I navigate to "Question bank" in current page administration
@@ -34,10 +34,5 @@ Feature: Test editing an jack question
     Then I should see "You must supply a value here."
     When I set the following fields to these values:
       | Question name   | Edited jack-001 name |
-      | Response format | No online text        |
-    And I press "id_submitbutton"
-    Then I should see "When \"No online text\" is selected, or responses are optional, you must allow at least one attachment."
-    When I set the following fields to these values:
-      | Response format | Plain text |
     And I press "id_submitbutton"
     Then I should see "Edited jack-001 name"

@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <quiz>
-<!-- question: 0  -->
-  <question type="category">
-    <category>
-        <text>$course$/Default for C1</text>
-
-    </category>
-  </question>
-
-<!-- question: 114000  -->
+<!-- question: 6  -->
   <question type="jack">
     <name>
       <text>jack-001</text>
@@ -22,18 +14,19 @@
     <defaultgrade>1.0000000</defaultgrade>
     <penalty>0.0000000</penalty>
     <hidden>0</hidden>
-    <responseformat>editor</responseformat>
+    <idnumber></idnumber>
+    <responseformat>plain</responseformat>
     <responserequired>1</responserequired>
     <responsefieldlines>15</responsefieldlines>
     <attachments>0</attachments>
     <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo></graderinfo>
+    <graderinfoformat>0</graderinfoformat>
+    <responsetemplate>Array</responsetemplate>
+    <responsetemplateformat>0</responsetemplateformat>
     <filetypeslist></filetypeslist>
-    <graderinfo format="html">
-      <text></text>
-    </graderinfo>
-    <responsetemplate format="html">
-      <text></text>
-    </responsetemplate>
+    <testdriver></testdriver>
+    <ruleset></ruleset>
   </question>
 
 </quiz>

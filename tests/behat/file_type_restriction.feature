@@ -34,9 +34,6 @@ I need to limit the submittable file types
     And I navigate to "Edit quiz" in current page administration
     And I click on "Edit question TF1" "link"
     And I set the field "Allow attachments" to "1"
-    And I set the field "Response format" to "No online text"
-    And I set the field "Require attachments" to "1"
-    And I set the field "filetypeslist[filetypes]" to ".txt"
     And I press "Save changes"
     Then I log out
 

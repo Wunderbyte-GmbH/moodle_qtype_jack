@@ -23,7 +23,6 @@ Feature: Test creating an jack question
       | Question name            | jack-001                      |
       | Question text            | Write an jack with 500 words. |
       | General feedback         | This is general feedback       |
-      | Response format          | HTML editor                    |
     Then I should see "jack-001"
 
   Scenario: Create an jack question with Response format set to 'HTML editor with the file picker'
@@ -31,5 +30,4 @@ Feature: Test creating an jack question
       | Question name            | jack-002                      |
       | Question text            | Write an jack with 500 words. |
       | General feedback         | This is general feedback       |
-      | Response format          | HTML editor                    |
     Then I should see "jack-002"
