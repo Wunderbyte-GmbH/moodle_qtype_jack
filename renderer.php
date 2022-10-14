@@ -427,7 +427,7 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
      *
      * @return string
      */
-    protected function class_name() {
+    protected function class_name(): string {
         return 'qtype_jack_editorfilepicker';
     }
 
