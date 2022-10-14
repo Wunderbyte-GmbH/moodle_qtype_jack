@@ -26,10 +26,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-global $CFG;
-require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
-require_once($CFG->dirroot . '/question/type/jack/question.php');
-require_once($CFG->dirroot . '/question/type/jack/questiontype.php');
+require_once('../../../engine/tests/helpers.php');
+require_once('../question.php');
+require_once('../questiontype.php');
 
 /**
  * Test helpers for the jack question type.
