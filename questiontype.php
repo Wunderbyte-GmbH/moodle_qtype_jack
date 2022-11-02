@@ -93,6 +93,7 @@ class qtype_jack extends question_type {
             $options->responseformat = 'noinline';
         } else {
             $options->responseformat = 'plain';
+            $options->attachmentsrequired = 0;
         }
         $options->responserequired = 1;
         $options->responsefieldlines = $formdata->responsefieldlines;
