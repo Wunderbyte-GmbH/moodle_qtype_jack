@@ -98,3 +98,7 @@ jobs:
       - name: PHPUnit tests
         if: ${{ always() }}
         run: moodle-plugin-ci phpunit
+
+      - name: Behat features
+        if: ${{ always() }}
+        run: moodle-plugin-ci behat --profile firefox
