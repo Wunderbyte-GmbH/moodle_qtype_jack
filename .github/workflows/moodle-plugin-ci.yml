@@ -1,6 +1,8 @@
 name: Moodle Plugin CI
 
 on: [push, pull_request]
+  branches:
+        - 'main'
 
 jobs:
   test:
@@ -101,4 +103,4 @@ jobs:
 
       - name: Behat features
         if: ${{ always() }}
-        run: moodle-plugin-ci behat --profile firefox
+        run: moodle-plugin-ci behat --profile chrome
