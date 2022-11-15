@@ -105,7 +105,7 @@ class qtype_jack_test_helper extends question_test_helper {
         $fromform->attachmentsrequired = 0;
         $fromform->filetypeslist = '';
         $fromform->graderinfo = array('text' => '', 'format' => FORMAT_HTML);
-        $fromform->responsetemplate = array('text' => '', 'format' => FORMAT_HTML);
+        $fromform->responsetemplate = 'responsetemplate';
 
         return $fromform;
     }
@@ -157,8 +157,8 @@ class qtype_jack_test_helper extends question_test_helper {
         $fromform->attachments = 3;
         $fromform->attachmentsrequired = 0;
         $fromform->filetypeslist = '';
-        $fromform->graderinfo = array('text' => '', 'format' => FORMAT_HTML);
-        $fromform->responsetemplate = array('text' => '', 'format' => FORMAT_HTML);
+        $fromform->graderinfo = array('text' => 'graderinfo', 'format' => FORMAT_HTML);
+        $fromform->responsetemplate = 'responsetemplate';
 
         return $fromform;
     }
@@ -196,7 +196,7 @@ class qtype_jack_test_helper extends question_test_helper {
         $fromform->attachmentsrequired = 0;
         $fromform->filetypeslist = '';
         $fromform->graderinfo = array('text' => '', 'format' => FORMAT_HTML);
-        $fromform->responsetemplate = array('text' => '', 'format' => FORMAT_HTML);
+        $fromform->responsetemplate = 'responsetemplate';
 
         return $fromform;
     }
