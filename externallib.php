@@ -82,11 +82,12 @@ class jack extends external_api {
     public static function get_next_jackquestion_returns() {
         return new external_single_structure(
             array(
-                'attemptid'  => new external_value(PARAM_INT, 'attemptid', VALUE_OPTIONAL),
+                'attemptid'  => new external_value(PARAM_INT, 'attemptid', VALUE_OPTIONAL, 0),
                 'attachments' => new external_files('attachments', VALUE_OPTIONAL),
-                'submission' => new external_value(PARAM_RAW, 'submission', VALUE_OPTIONAL),
-                'testdriver' => new external_value(PARAM_RAW, 'testdriver', VALUE_OPTIONAL),
-                'ruleset'    => new external_value(PARAM_RAW, 'ruleset', VALUE_OPTIONAL),
+                'submission' => new external_value(PARAM_RAW, 'submission', VALUE_OPTIONAL, ''),
+                'testdriver' => new external_value(PARAM_RAW, 'testdriver', VALUE_OPTIONAL, ''),
+                'ruleset'    => new external_value(PARAM_RAW, 'ruleset', VALUE_OPTIONAL, ''),
+                'lang'    => new external_value(PARAM_RAW, 'language', VALUE_OPTIONAL, ''),
             )
         );
     }
@@ -156,6 +157,7 @@ class jack extends external_api {
                         array('questionid' => $jackquestion->id));
                     $data->testdriver = $questionjacksettings->testdriver;
                     $data->ruleset = $questionjacksettings->ruleset;
+                    $data->language = current_language();
                     return $data;
                 }
             }
