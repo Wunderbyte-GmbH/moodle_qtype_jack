@@ -38,7 +38,7 @@ I need to limit the submittable file types
     Then I log out
 
   @javascript @_file_upload
-  Scenario: Preview an jack question and submit a response with a correct filetype.
+  Scenario: Preview an jack question and submit a response with a incorrect filetype txt.
     When I log in as "student1"
     And I follow "Manage private files"
     And I upload "lib/tests/fixtures/empty.txt" file to "Files" filemanager
@@ -50,14 +50,10 @@ I need to limit the submittable file types
     And I should see "You can drag and drop files here to add them."
     And I click on "Add..." "button"
     And I click on "Private files" "link" in the ".fp-repo-area" "css_element"
-    And I click on "empty.txt" "link"
-    And I click on "Select this file" "button"
-    # Wait for the page to "settle".
-    And I wait until the page is ready
-    Then I should not see "These file types are not allowed here:"
+    And I should not see "empty.txt"
 
   @javascript @_file_upload
-  Scenario: Preview an jack question and try to submit a response with an incorrect filetype.
+  Scenario: Preview an jack question and try to submit a response with an incorrect filetype csv.
     When I log in as "student1"
     And I follow "Manage private files"
     And I upload "lib/tests/fixtures/upload_users.csv" file to "Files" filemanager
@@ -70,3 +66,23 @@ I need to limit the submittable file types
     And I click on "Add..." "button"
     And I click on "Private files" "link" in the ".fp-repo-area" "css_element"
     Then I should see "No files available"
+
+  @javascript @_file_upload
+  Scenario: Preview an jack question and submit a response with a correct filetype.
+    When I log in as "student1"
+    And I follow "Manage private files"
+    And I upload "question/type/jack/tests/fixtures/test.jar" file to "Files" filemanager
+    And I press "Save changes"
+    And I am on "Course 1" course homepage
+    And I follow "Quiz 1"
+    And I press "Attempt quiz now"
+    And I should see "First question"
+    And I should see "You can drag and drop files here to add them."
+    And I click on "Add..." "button"
+    And I click on "Private files" "link" in the ".fp-repo-area" "css_element"
+    And I click on "test.jar" "link"
+    And I click on "Select this file" "button"
+    And I wait until the page is ready
+    And I click on "Finish attempt ..." "button"
+    Then I should see "Summary of attempt"
+

@@ -22,12 +22,12 @@ Feature: Test editing an jack question
       | Test questions   | jack | jack-001 | editor           | x | y |
       | Test questions   | jack | jack-002 | editorfilepicker | x | y |
       | Test questions   | jack | jack-003 | plain            | x | y |
-    And I log in as "teacher1"
-    And I am on "Course 1" course homepage
-    And I navigate to "Question bank" in current page administration
 
   Scenario: Edit an jack question
-    When I choose "Edit question" action for "jack-001" in the question bank
+    When I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I navigate to "Question bank" in current page administration
+    And I choose "Edit question" action for "jack-001" in the question bank
     And I set the following fields to these values:
       | Question name | |
     And I press "id_submitbutton"
