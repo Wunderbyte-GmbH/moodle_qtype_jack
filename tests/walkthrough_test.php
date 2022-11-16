@@ -22,6 +22,18 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_jack;
+
+use coding_exception;
+use context_system;
+use context_user;
+use qbehaviour_walkthrough_test_base;
+use question_bank;
+use question_engine;
+use question_state;
+use stdClass;
+use test_question_maker;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;

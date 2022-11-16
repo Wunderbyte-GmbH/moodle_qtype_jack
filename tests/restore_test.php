@@ -22,6 +22,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_jack;
+
+use context_course;
+use question_edit_contexts;
+use restore_date_testcase;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;

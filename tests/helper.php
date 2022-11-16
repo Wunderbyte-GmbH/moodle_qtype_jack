@@ -272,9 +272,10 @@ class qtype_jack_test_helper extends question_test_helper {
             'filearea'  => 'draft',
             'itemid'    => $draftid,
             'filepath'  => '/',
-            'filename'  => $name,
+            'filename'  => 'name' . $name . '.jar',
         );
-        $fs->create_file_from_string($fileinfo, $contents);
+
+        $fs->create_file_from_string($fileinfo, 'content' . $contents);
     }
 
     /**
