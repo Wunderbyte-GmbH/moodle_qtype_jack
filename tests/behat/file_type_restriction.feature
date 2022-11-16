@@ -85,4 +85,3 @@ I need to limit the submittable file types
     And I wait until the page is ready
     And I click on "Finish attempt ..." "button"
     Then I should see "Summary of attempt"
-
