@@ -151,6 +151,8 @@ class qtype_jack_test_helper extends question_test_helper {
         $fromform->generalfeedback =
             array('text' => 'I hope your story had a beginning, a middle and an end.',
             'format' => FORMAT_HTML);
+        $fromform->testdriver = 'x';
+        $fromform->ruleset = 'x';
         $fromform->responseformat = 'editorfilepicker';
         $fromform->responserequired = 1;
         $fromform->responsefieldlines = 10;
@@ -189,6 +191,8 @@ class qtype_jack_test_helper extends question_test_helper {
         $fromform->generalfeedback =
             array('text' => 'I hope your story had a beginning, a middle and an end.',
             'format' => FORMAT_HTML);
+        $fromform->testdriver = 'x';
+        $fromform->ruleset = 'x';
         $fromform->responseformat = 'plain';
         $fromform->responserequired = 1;
         $fromform->responsefieldlines = 10;
