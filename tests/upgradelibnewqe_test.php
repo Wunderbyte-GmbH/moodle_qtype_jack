@@ -220,60 +220,57 @@ class upgradelibnewqe_test extends question_attempt_upgrader_test_base {
 
         $expectedqa = (object) array(
             'behaviour' => 'manualgraded',
-            'questionid' => 90056,
+            'questionid' => '90056',
             'variant' => 1,
-            'maxmark' => 2,
+            'maxmark' => '2',
             'minfraction' => 0,
             'maxfraction' => 1,
             'flagged' => 0,
             'questionsummary' => "Give two examples of facilities within XML schemas that cannot be found in Document Type
                 Definitions (DTDs).\n_(2 marks)_",
             'rightanswer' => '',
-            'responsesummary' => "Variable can be typed \n\nxml Schemas fully support Namespaces",
-            'timemodified' => 1273068477,
+            'responsesummary' => "",
+            'timemodified' => '1273068477',
             'steps' => array(
                 0 => (object) array(
                     'sequencenumber' => 0,
                     'state' => 'todo',
                     'fraction' => null,
-                    'timecreated' => 1271667586,
-                    'userid' => 118065,
+                    'timecreated' => '1271667586',
+                    'userid' => '118065',
                     'data' => array(),
                 ),
                 1 => (object) array(
                     'sequencenumber' => 1,
-                    'state' => 'complete',
+                    'state' => 'todo',
                     'fraction' => null,
-                    'timecreated' => 1271670445,
-                    'userid' => 118065,
-                    'data' => array('answer' => '<p>Variable typeing</p>
-        <p>Namespaces</p>', 'answerformat' => FORMAT_HTML),
+                    'timecreated' => '1271670445',
+                    'userid' => '118065',
+                    'data' => array(),
                 ),
                 2 => (object) array(
                     'sequencenumber' => 2,
-                    'state' => 'complete',
+                    'state' => 'todo',
                     'fraction' => null,
-                    'timecreated' => 1271671440,
-                    'userid' => 118065,
-                    'data' => array('answer' => '<p>Variable can be typed</p>
-        <p>xml Schemas fully support Namespaces</p>', 'answerformat' => FORMAT_HTML),
+                    'timecreated' => '1271671440',
+                    'userid' => '118065',
+                    'data' => array(),
                 ),
                 3 => (object) array(
                     'sequencenumber' => 3,
                     'state' => 'needsgrading',
                     'fraction' => null,
                     'timecreated' => 1271671440,
-                    'userid' => 118065,
-                    'data' => array('answer' => '<p>Variable can be typed</p>
-        <p>xml Schemas fully support Namespaces</p>', '-finish' => 1, 'answerformat' => FORMAT_HTML),
+                    'userid' => '118065',
+                    'data' => array('-finish' => 1),
                 ),
                 4 => (object) array(
                     'sequencenumber' => 4,
                     'state' => 'mangrright',
                     'fraction' => 1,
-                    'timecreated' => 1273068477,
+                    'timecreated' => '1273068477',
                     'userid' => null,
-                    'data' => array('-comment' => '', '-mark' => 2, '-maxmark' => 2, 'answerformat' => FORMAT_HTML),
+                    'data' => array('-comment' => '', '-mark' => 2, '-maxmark' => 2),
                 ),
             ),
         );
@@ -435,19 +432,16 @@ class upgradelibnewqe_test extends question_attempt_upgrader_test_base {
 
         $expectedqa = (object) array(
             'behaviour' => 'manualgraded',
-            'questionid' => 3729,
+            'questionid' => '3729',
             'variant' => 1,
-            'maxmark' => 0,
+            'maxmark' => '0',
             'minfraction' => 0,
             'maxfraction' => 1,
             'flagged' => 0,
             'questionsummary' => "If you answered 'No' to the previous question please expand on your problem here.",
             'rightanswer' => '',
-            'responsesummary' => 'it would be better to point our a \'red colour\' on the number which indicates the
-                questions that we have done wrong. similar to previously, from question 1 to 10, green colour shows the
-                right answer and red colour shows the wrong answer, so that we do not need to click on each answer to
-                find out if it is right or wrong.',
-            'timemodified' => 1179134869,
+            'responsesummary' => '',
+            'timemodified' => '1179134869',
             'steps' => array(
                 0 => (object) array(
                     'sequencenumber' => 0,
@@ -459,27 +453,19 @@ class upgradelibnewqe_test extends question_attempt_upgrader_test_base {
                 ),
                 1 => (object) array(
                     'sequencenumber' => 1,
-                    'state' => 'complete',
+                    'state' => 'todo',
                     'fraction' => null,
-                    'timecreated' => 1179134869,
-                    'userid' => 96864,
-                    'data' => array('answer' => 'it would be better to point our a \'red colour\' on the number which
-                        indicates the questions that we have done wrong. similar to previously, from question 1 to 10,
-                        green colour shows the right answer and red colour shows the wrong answer, so that we do not
-                        need to click on each answer to find out if it is right or wrong.',
-                        'answerformat' => FORMAT_HTML),
+                    'timecreated' => '1179134869',
+                    'userid' => '96864',
+                    'data' => array(),
                 ),
                 2 => (object) array(
                     'sequencenumber' => 2,
                     'state' => 'needsgrading',
                     'fraction' => null,
-                    'timecreated' => 1179134869,
-                    'userid' => 96864,
-                    'data' => array('-finish' => 1, 'answer' => 'it would be better to point our a \'red colour\' on the
-                        number which indicates the questions that we have done wrong. similar to previously, from question 1
-                        to 10, green colour shows the right answer and red colour shows the wrong answer, so that we do not
-                        need to click on each answer to find out if it is right or wrong.',
-                        'answerformat' => FORMAT_HTML),
+                    'timecreated' => '1179134869',
+                    'userid' => '96864',
+                    'data' => array('-finish' => 1),
                 ),
             ),
         );
@@ -583,9 +569,9 @@ class upgradelibnewqe_test extends question_attempt_upgrader_test_base {
 
         $expectedqa = (object) array(
             'behaviour' => 'manualgraded',
-            'questionid' => 3729,
+            'questionid' => '3729',
             'variant' => 1,
-            'maxmark' => 0,
+            'maxmark' => '0',
             'minfraction' => 0,
             'maxfraction' => 1,
             'flagged' => 0,
@@ -598,8 +584,8 @@ class upgradelibnewqe_test extends question_attempt_upgrader_test_base {
                     'sequencenumber' => 0,
                     'state' => 'todo',
                     'fraction' => null,
-                    'timecreated' => 1179134211,
-                    'userid' => 96864,
+                    'timecreated' => '1179134211',
+                    'userid' => '96864',
                     'data' => array(),
                 ),
             ),
