@@ -187,7 +187,7 @@ class jack extends external_api {
                         $lang = 'en';
                     }
 
-                    $data->language = $lang;
+                    $data->lang = $lang;
                     return $data;
                 }
             }
