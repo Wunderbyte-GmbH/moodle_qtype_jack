@@ -32,6 +32,7 @@ defined('MOODLE_INTERNAL') || die;
 require_once($CFG->libdir.'/externallib.php');
 require_once($CFG->libdir.'/questionlib.php');
 require_once($CFG->dirroot.'/question/engine/datalib.php');
+require_once($CFG->dirroot.'/question/type/jack/lib.php');
 
 /**
  * Jack
@@ -99,7 +100,7 @@ class jack extends external_api {
      * @throws dml_exception
      */
     public static function get_next_question() {
-        global $DB;
+        global $DB, $CFG;
 
         $jackquestions = $DB->get_records('question', array('qtype' => 'jack'));
 
@@ -157,7 +158,36 @@ class jack extends external_api {
                         array('questionid' => $jackquestion->id));
                     $data->testdriver = $questionjacksettings->testdriver;
                     $data->ruleset = $questionjacksettings->ruleset;
-                    $data->language = current_language();
+
+                    // The logik for retrieving the language for the question right now is via the course.
+                    // If there is no course question set, then we go to the system level.
+
+                    $instanceid = $DB->get_field('context', 'instanceid', ['id' => $questionusage->contextid]);
+
+                    // With the instanceid and the knowledge about the module, we can get the course.
+                    $sql = "SELECT c.lang
+                            FROM {course} c
+                            JOIN {course_modules} cm ON cm.course=c.id
+                            JOIN {modules} m ON m.id=cm.module
+                            WHERE m.name = :module
+                            AND cm.instance = :instanceid";
+                    $params = [
+                        'instanceid' => $instanceid,
+                        'module' => 'quiz',
+                    ];
+                    $lang = $DB->get_field_sql($sql, $params);
+
+                    // If there is no language set in the course, we fall back to the system.
+                    if (!$lang) {
+                        $lang = $CFG->lang;
+                    }
+
+                    // If at this point, the language is not one of the supported langauges, we use English.
+                    if (!in_array($lang, SUPPORTED_LANGUAGES)) {
+                        $lang = 'en';
+                    }
+
+                    $data->language = $lang;
                     return $data;
                 }
             }
