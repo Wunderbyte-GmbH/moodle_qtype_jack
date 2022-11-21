@@ -126,7 +126,7 @@ class qtype_jack_edit_form extends question_edit_form {
         $question->attachments = $question->options->attachments;
         $question->attachmentsrequired = $question->options->attachmentsrequired;
         $question->filetypeslist = $question->options->filetypeslist;
-        $question->lang = $question->options->lang;
+        $question->lang = $question->options->lang ?? '';
 
         $draftid = file_get_submitted_draft_itemid('graderinfo');
         $question->graderinfo = array();

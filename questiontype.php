@@ -26,6 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/questionlib.php');
+require_once($CFG->dirroot.'/question/type/jack/lib.php');
 
 /**
  * The jack question type.

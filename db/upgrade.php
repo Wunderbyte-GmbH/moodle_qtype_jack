@@ -17,13 +17,10 @@
 /**
  * Jack question type upgrade code.
  *
- * @package    qtype
- * @subpackage jack
+ * @package    qtype_jack
  * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Upgrade code for the jack question type.
