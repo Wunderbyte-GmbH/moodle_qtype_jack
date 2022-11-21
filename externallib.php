@@ -159,28 +159,9 @@ class jack extends external_api {
                     $data->testdriver = $questionjacksettings->testdriver;
                     $data->ruleset = $questionjacksettings->ruleset;
 
-                    // The logik for retrieving the language for the question right now is via the course.
-                    // If there is no course question set, then we go to the system level.
-
-                    $instanceid = $DB->get_field('context', 'instanceid', ['id' => $questionusage->contextid]);
-
-                    // With the instanceid and the knowledge about the module, we can get the course.
-                    $sql = "SELECT c.lang
-                            FROM {course} c
-                            JOIN {course_modules} cm ON cm.course=c.id
-                            JOIN {modules} m ON m.id=cm.module
-                            WHERE m.name = :module
-                            AND cm.instance = :instanceid";
-                    $params = [
-                        'instanceid' => $instanceid,
-                        'module' => 'quiz',
-                    ];
-                    $lang = $DB->get_field_sql($sql, $params);
-
-                    // If there is no language set in the course, we fall back to the system.
-                    if (!$lang) {
-                        $lang = $CFG->lang;
-                    }
+                    // We chose the language via the set langauge for the question.
+                    // There still is a check if the returned language is within the array of supported languages.
+                    $lang = $questionjacksettings->lang;
 
                     // If at this point, the language is not one of the supported langauges, we use English.
                     if (!in_array($lang, SUPPORTED_LANGUAGES)) {

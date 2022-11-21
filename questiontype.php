@@ -77,7 +77,7 @@ class qtype_jack extends question_type {
      * @return void
      */
     public function save_question_options($formdata) {
-        global $DB;
+        global $DB, $CFG;
         $context = $formdata->context;
 
         $options = $DB->get_record('qtype_jack_options', array('questionid' => $formdata->id));
@@ -103,6 +103,12 @@ class qtype_jack extends question_type {
         $options->graderinfoformat = $formdata->graderinfo['format'];
         $options->responsetemplate = $formdata->responsetemplate;
         $options->responsetemplateformat = 0;
+
+        if (!isset($formdata->lang)) {
+            $formdata->lang = in_array($CFG->lang, SUPPORTED_LANGUAGES) ? $CFG->lang : 'en';
+        }
+
+        $options->lang = $formdata->lang;
         $DB->update_record('qtype_jack_options', $options);
 
         // Add jack options.

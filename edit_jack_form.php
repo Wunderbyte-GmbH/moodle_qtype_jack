@@ -26,6 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once($CFG->dirroot . '/question/type/jack/questiontype.php');
+require_once($CFG->dirroot.'/question/type/jack/lib.php');
 
 /**
  * jack question type editing form.
@@ -42,11 +43,28 @@ class qtype_jack_edit_form extends question_edit_form {
      * @return void
      */
     protected function definition_inner($mform) {
+
+        global $CFG;
+
         /** @var qtype_jack $qtype */
         $qtype = question_bank::get_qtype('jack');
 
+        // Get the working translations from the list of translations.
+        $alltranslations = get_string_manager()->get_list_of_translations();
+        $translations = [];
+        foreach ($alltranslations as $key => $value) {
+            if (in_array($key, SUPPORTED_LANGUAGES)) {
+                $translations[$key] = $value;
+            }
+        }
+
         $mform->addElement('header', 'jackoptions', get_string('jackoptions', 'qtype_jack'));
         $mform->setExpanded('jackoptions');
+
+        $mform->addElement('select', 'lang', get_string('setlanguage', 'qtype_jack'),
+            $translations, []);
+        $lang = $CFG->lang === 'de' ? 'de' : 'en';
+        $mform->setDefault('lang', $lang);
 
         $mform->addElement('textarea', 'testdriver', get_string('testdriver', 'qtype_jack'),
             array('rows' => 10, 'cols' => 100));
@@ -108,6 +126,7 @@ class qtype_jack_edit_form extends question_edit_form {
         $question->attachments = $question->options->attachments;
         $question->attachmentsrequired = $question->options->attachmentsrequired;
         $question->filetypeslist = $question->options->filetypeslist;
+        $question->lang = $question->options->lang;
 
         $draftid = file_get_submitted_draft_itemid('graderinfo');
         $question->graderinfo = array();

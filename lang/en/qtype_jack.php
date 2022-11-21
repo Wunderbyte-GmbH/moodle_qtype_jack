@@ -70,3 +70,4 @@ $string['ruleset'] = 'Rule set';
 
 $string['testdriver'] = 'Testdriver';
 $string['jack:access'] = '';
+$string['setlanguage'] = 'Set language';

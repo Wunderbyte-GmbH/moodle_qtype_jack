@@ -70,3 +70,4 @@ $string['ruleset'] = 'Regelsatz';
 
 $string['testdriver'] = 'Testtreiber';
 $string['jack:access'] = '';
+$string['setlanguage'] = 'Sprache einstellen';
