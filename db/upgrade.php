@@ -35,7 +35,7 @@ function xmldb_qtype_jack_upgrade($oldversion) {
 
         // Define field lang to be added to qtype_jack_options.
         $table = new xmldb_table('qtype_jack_options');
-        $field = new xmldb_field('lang', XMLDB_TYPE_CHAR, '255', null, null, null, null, 'filetypeslist');
+        $field = new xmldb_field('lang', XMLDB_TYPE_CHAR, '16', null, null, null, null, 'filetypeslist');
 
         // Conditionally launch add field lang.
         if (!$dbman->field_exists($table, $field)) {
