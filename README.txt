@@ -13,5 +13,6 @@ You can start the deleting process for the users you see with the button "delete
 If the list is greater than 100 the following users are displayed after deleting the current displayed.
 
 copyright  2022 eLeDia GmbH http://eledia.de
+copyright 2022 Wunderbyte GmbH https://wunderbyte.at
 license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 You can receive a copy of the GNU General Public License at <http:www.gnu.org/licenses/>.
