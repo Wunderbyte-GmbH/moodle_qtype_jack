@@ -101,7 +101,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $PAGE->set_url('/');
 
         // Create an jack question.
-        $q = test_question_maker::make_question('jack', 'editor');
+        $q = \test_question_maker::make_question('jack', 'editor');
         $this->start_attempt_at_question($q, 'deferredfeedback', 1);
 
         $prefix = $this->quba->get_field_prefix($this->slot);
@@ -153,7 +153,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
     public function test_deferred_feedback_plain_text() {
 
         // Create an jack question.
-        $q = test_question_maker::make_question('jack', 'plain');
+        $q = \test_question_maker::make_question('jack', 'plain');
         $this->start_attempt_at_question($q, 'deferredfeedback', 1);
 
         $prefix = $this->quba->get_field_prefix($this->slot);
@@ -211,7 +211,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $PAGE->set_url('/');
 
         // Create an jack question.
-        $q = test_question_maker::make_question('jack', 'responsetemplate');
+        $q = \test_question_maker::make_question('jack', 'responsetemplate');
         $this->start_attempt_at_question($q, 'deferredfeedback', 1);
 
         $prefix = $this->quba->get_field_prefix($this->slot);
@@ -267,7 +267,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->setAdminUser();
         // Required to init a text editor.
         $PAGE->set_url('/');
-        $usercontextid = context_user::instance($USER->id)->id;
+        $usercontextid = \context_user::instance($USER->id)->id;
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
@@ -289,7 +289,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->render();
         $editordraftid = 1;
         if (!preg_match('/env=filemanager&amp;action=browse&amp;.*?itemid=(\d+)&amp;/', $this->currentoutput, $matches)) {
-            throw new coding_exception('File manager draft item id not found.');
+            throw new \coding_exception('File manager draft item id not found.');
         }
         $attachementsdraftid = $matches[1];
 
@@ -314,7 +314,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->render();
         $editordraftid = $matches[1];
         if (!preg_match('/env=filemanager&amp;action=browse&amp;.*?itemid=(\d+)&amp;/', $this->currentoutput, $matches)) {
-            throw new coding_exception('File manager draft item id not found.');
+            throw new \coding_exception('File manager draft item id not found.');
         }
         $attachementsdraftid = $matches[1];
 
@@ -343,7 +343,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
 
         $q = question_bank::load_question($question->id);
         $this->quba = question_engine::make_questions_usage_by_activity('unit_test',
-                context_system::instance());
+                \context_system::instance());
         $this->quba->set_preferred_behaviour('deferredfeedback');
         $this->slot = $this->quba->add_question($q, 1);
         $this->quba->start_question_based_on($this->slot, $oldqa);
@@ -359,7 +359,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->render();
         $editordraftid = $matches[1];
         if (!preg_match('/env=filemanager&amp;action=browse&amp;.*?itemid=(\d+)&amp;/', $this->currentoutput, $matches)) {
-            throw new coding_exception('File manager draft item id not found.');
+            throw new \coding_exception('File manager draft item id not found.');
         }
         $attachementsdraftid = $matches[1];
 
@@ -383,7 +383,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->setAdminUser();
         // Required to init a text editor.
         $PAGE->set_url('/');
-        $usercontextid = context_user::instance($USER->id)->id;
+        $usercontextid = \context_user::instance($USER->id)->id;
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
@@ -405,7 +405,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->render();
         $editordraftid = 1;
         if (!preg_match('/env=filemanager&amp;action=browse&amp;.*?itemid=(\d+)&amp;/', $this->currentoutput, $matches)) {
-            throw new coding_exception('File manager draft item id not found.');
+            throw new \coding_exception('File manager draft item id not found.');
         }
         $attachementsdraftid = $matches[1];
 
@@ -433,7 +433,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
 
         $q = question_bank::load_question($question->id);
         $this->quba = question_engine::make_questions_usage_by_activity('unit_test',
-                context_system::instance());
+                \context_system::instance());
         $this->quba->set_preferred_behaviour('deferredfeedback');
         $this->slot = $this->quba->add_question($q, 1);
         $this->quba->start_question_based_on($this->slot, $oldqa);
@@ -454,7 +454,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
 
         $this->resetAfterTest(true);
         $this->setAdminUser();
-        $usercontextid = context_user::instance($USER->id)->id;
+        $usercontextid = \context_user::instance($USER->id)->id;
 
         // Create an jack question in the DB.
         /** @var testing_data_generator $generator */
@@ -495,7 +495,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
 
         $q = question_bank::load_question($question->id);
         $this->quba = question_engine::make_questions_usage_by_activity('unit_test',
-                context_system::instance());
+                \context_system::instance());
         $this->quba->set_preferred_behaviour('deferredfeedback');
         $this->slot = $this->quba->add_question($q, 1);
         $this->quba->start_question_based_on($this->slot, $oldqa);
@@ -523,7 +523,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->setAdminUser();
         // Required to init a text editor.
         $PAGE->set_url('/');
-        $usercontextid = context_user::instance($USER->id)->id;
+        $usercontextid = \context_user::instance($USER->id)->id;
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
@@ -546,7 +546,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->render();
         $editordraftid = 1;
         if (!preg_match('/env=filemanager&amp;action=browse&amp;.*?itemid=(\d+)&amp;/', $this->currentoutput, $matches)) {
-            throw new coding_exception('File manager draft item id not found.');
+            throw new \coding_exception('File manager draft item id not found.');
         }
         $attachementsdraftid = $matches[1];
 
@@ -580,7 +580,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->setAdminUser();
         // Required to init a text editor.
         $PAGE->set_url('/');
-        $usercontextid = context_user::instance($USER->id)->id;
+        $usercontextid = \context_user::instance($USER->id)->id;
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
@@ -603,7 +603,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->render();
         $editordraftid = 1;
         if (!preg_match('/env=filemanager&amp;action=browse&amp;.*?itemid=(\d+)&amp;/', $this->currentoutput, $matches)) {
-            throw new coding_exception('File manager draft item id not found.');
+            throw new \coding_exception('File manager draft item id not found.');
         }
         $attachementsdraftid = $matches[1];
 
