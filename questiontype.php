@@ -78,7 +78,7 @@ class qtype_jack extends question_type {
      * @return void
      */
     public function save_question_options($formdata) {
-        global $DB, $CFG;
+        global $DB, $CFG, $PAGE;
         $context = $formdata->context;
 
         $options = $DB->get_record('qtype_jack_options', array('questionid' => $formdata->id));
@@ -111,6 +111,32 @@ class qtype_jack extends question_type {
 
         $options->lang = $formdata->lang;
         $DB->update_record('qtype_jack_options', $options);
+
+        $pagecontext = $PAGE->context;
+        // On saving, first we need to make sure there is only one file.
+
+
+        // Add files.
+        if (!empty($formdata->responsefiletemplate)) {
+
+            $fs = get_file_storage();
+            $storedfiles = $fs->get_area_files(
+                $pagecontext->id,
+                'qtype_jack',
+                'responsefiletemplate',
+                $formdata->id);
+
+            foreach ($storedfiles as $storedfile) {
+                $storedfile->delete();
+            }
+
+            file_save_draft_area_files(
+                $formdata->responsefiletemplate,
+                $pagecontext->id,
+                'qtype_jack',
+                'responsefiletemplate',
+                $formdata->id);
+        }
 
         // Add jack options.
         $jackoptions = $DB->get_record('question_jack', array('questionid' => $formdata->id));
@@ -261,6 +287,8 @@ class qtype_jack extends question_type {
         $fs = get_file_storage();
         $fs->move_area_files_to_new_context($oldcontextid,
                 $newcontextid, 'qtype_jack', 'graderinfo', $questionid);
+        $fs->move_area_files_to_new_context($oldcontextid,
+                $newcontextid, 'qtype_jack', 'responsefiletemplate', $questionid);
     }
 
     /**
@@ -274,6 +302,7 @@ class qtype_jack extends question_type {
         parent::delete_files($questionid, $contextid);
         $fs = get_file_storage();
         $fs->delete_area_files($contextid, 'qtype_jack', 'graderinfo', $questionid);
+        $fs->delete_area_files($contextid, 'qtype_jack', 'responsefiletemplate', $questionid);
     }
 
      /**

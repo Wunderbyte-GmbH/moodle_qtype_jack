@@ -63,9 +63,13 @@ $string['responseisrequired'] = 'Teilnehmer/in muss Text eingeben';
 $string['responsenotrequired'] = 'Texteingabe ist optional';
 $string['responseoptions'] = 'Antwortoptionen';
 $string['responserequired'] = 'Texteingabe erforderlich';
-$string['responsetemplate'] = 'Antwortvorlage';
-$string['responsetemplate_help'] = 'Der hier eingegebene Text wird im Antwortfeld für Teilnehmer angezeigt wenn diese/r die Frage beantworten will.';
-$string['responsetemplateheader'] = 'Antwortvorlage';
+$string['responsetemplate'] = 'Vorlage: Eingabefeld';
+$string['responsetemplate_help'] = 'Der hier eingegebene Text wird im Eingabefeld für Teilnehmer angezeigt, wenn diese/r die Frage beantworten will. Ein Eingabefeld wird für Teilnehmer nur angezeigt, wenn bei „Anhänge erlauben“ die Option „Nein“ ausgewählt ist.';
+$string['responsetemplateheader'] = 'Quellcodevorlage';
+$string['sourcecodetemplatefile'] = 'Vorlage: Datei';
+$string['sourcecodetemplatefile_help'] = "Zusätzliche Dateien, z.B. Quellcodevorlagen, können hinzugefügt werden. Ein Link zum Download der Datei wird unter dem Fragetext angezeigt.";
+$string['workwithsourcecodetemplatefile'] = 'Laden Sie die Quellcodevorlage um sie zu bearbeiten:';
+
 $string['ruleset'] = 'Regelsatz';
 
 $string['testdriver'] = 'Testtreiber';

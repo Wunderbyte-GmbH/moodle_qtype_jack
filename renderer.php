@@ -75,10 +75,32 @@ class qtype_jack_renderer extends qtype_renderer {
             }
         }
 
+        $fs = get_file_storage();
+        if ($storedfiles = $fs->get_area_files(
+            $options->context->id,
+            'qtype_jack',
+            'responsefiletemplate',
+            $question->id)) {
+
+            $storedfile = array_pop($storedfiles);
+
+            $url = moodle_url::make_pluginfile_url(
+                $storedfile->get_contextid(),
+                $storedfile->get_component(),
+                $storedfile->get_filearea(),
+                $storedfile->get_itemid(),
+                $storedfile->get_filepath(),
+                $storedfile->get_filename(),
+                false
+            );
+            $renderurl = html_writer::tag('div', get_string('workwithsourcecodetemplatefile', 'qtype_jack'));
+            $renderurl .= html_writer::link($url->out(), $storedfile->get_filename());
+        }
+
         $result = '';
         $result .= html_writer::tag('div', $question->format_questiontext($qa),
                 array('class' => 'qtext'));
-
+        $result .= $renderurl ?? '';
         $result .= html_writer::start_tag('div', array('class' => 'ablock'));
         $result .= html_writer::tag('div', $answer, array('class' => 'answer'));
         $result .= html_writer::tag('div', $files, array('class' => 'attachments'));

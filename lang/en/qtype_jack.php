@@ -63,9 +63,13 @@ $string['responseoptions'] = 'Response Options';
 $string['responserequired'] = 'Require text';
 $string['responsenotrequired'] = 'Text input is optional';
 $string['responseisrequired'] = 'Require the student to enter text';
-$string['responsetemplate'] = 'Response template';
-$string['responsetemplateheader'] = 'Response Template';
-$string['responsetemplate_help'] = 'Any text entered here will be displayed in the response input box when a new attempt at the question starts.';
+$string['responsetemplate'] = 'Template: Input box';
+$string['responsetemplateheader'] = 'Source code template';
+$string['responsetemplate_help'] = 'Any text entered here will be displayed in the input box when a new attempt at the question starts. The input box is only visible to students when “Allow attachments” is set to “No”.';
+$string['sourcecodetemplatefile'] = 'Template: File';
+$string['sourcecodetemplatefile_help'] = "Additional files, such as source code templates, may be added. Download links for the files will then be displayed below the question text.";
+$string['workwithsourcecodetemplatefile'] = 'Download and change the source code template';
+
 $string['ruleset'] = 'Rule set';
 
 $string['testdriver'] = 'Testdriver';

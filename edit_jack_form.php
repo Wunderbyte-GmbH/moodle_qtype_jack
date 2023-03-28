@@ -97,6 +97,19 @@ class qtype_jack_edit_form extends question_edit_form {
         $mform->disabledIf('filetypeslist', 'attachments', 'eq', 0);
 
         $mform->addElement('header', 'responsetemplateheader', get_string('responsetemplateheader', 'qtype_jack'));
+        $mform->setExpanded('responsetemplateheader');
+        $maxbytes = get_config('core', 'maxbytes');
+        $mform->addElement(
+            'filepicker',
+            'responsefiletemplate',
+            get_string('sourcecodetemplatefile', 'qtype_jack'),
+            null,
+            [
+                'maxbytes' => $maxbytes,
+                'accepted_types' => '*',
+            ]
+        );
+
         $mform->addElement('textarea', 'responsetemplate', get_string('responsetemplate', 'qtype_jack'),
                 array('rows' => 10, 'cols' => 100));
         $mform->addHelpButton('responsetemplate', 'responsetemplate', 'qtype_jack');
@@ -114,6 +127,9 @@ class qtype_jack_edit_form extends question_edit_form {
      * @return object
      */
     protected function data_preprocessing($question) {
+
+        global $PAGE;
+
         $question = parent::data_preprocessing($question);
 
         if (empty($question->options)) {
@@ -127,6 +143,25 @@ class qtype_jack_edit_form extends question_edit_form {
         $question->attachmentsrequired = $question->options->attachmentsrequired;
         $question->filetypeslist = $question->options->filetypeslist;
         $question->lang = $question->options->lang ?? '';
+
+        // Get an unused draft itemid which will be used for this form.
+        $draftid = file_get_submitted_draft_itemid('responsefiletemplate');
+
+        // We need to use the right context here.
+
+        $pagecontext = $PAGE->context;
+
+        // Copy the existing files which were previously uploaded
+        // into the draft area used by this form.
+        file_prepare_draft_area(
+            $draftid,
+            $pagecontext->id,
+            'qtype_jack',
+            'responsefiletemplate',
+            $question->id,
+            $this->fileoptions,
+        );
+        $question->responsefiletemplate = $draftid;
 
         $draftid = file_get_submitted_draft_itemid('graderinfo');
         $question->graderinfo = array();

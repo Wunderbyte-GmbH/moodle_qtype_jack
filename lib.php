@@ -43,5 +43,16 @@ define('SUPPORTED_LANGUAGES', ['en', 'de']);
 function qtype_jack_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options=array()) {
     global $CFG;
     require_once($CFG->libdir . '/questionlib.php');
-    question_pluginfile($course, $context, 'qtype_jack', $filearea, $args, $forcedownload, $options);
+
+    try {
+        question_pluginfile($course, $context, 'qtype_jack', $filearea, $args, $forcedownload, $options);
+
+    } catch (Exception $e) {
+        $fs = get_file_storage();
+        $file = $fs->get_file($context->id, 'qtype_jack', $filearea, $args[0], '/', $args[1]);
+
+        // Send the file, always forcing download, we don't want options.
+        \core\session\manager::write_close();
+        send_stored_file($file, 0, 0, true);
+    }
 }
