@@ -147,15 +147,11 @@ class qtype_jack_edit_form extends question_edit_form {
         // Get an unused draft itemid which will be used for this form.
         $draftid = file_get_submitted_draft_itemid('responsefiletemplate');
 
-        // We need to use the right context here.
-
-        $pagecontext = $PAGE->context;
-
         // Copy the existing files which were previously uploaded
         // into the draft area used by this form.
         file_prepare_draft_area(
             $draftid,
-            $pagecontext->id,
+            $this->context->id,
             'qtype_jack',
             'responsefiletemplate',
             $question->id,

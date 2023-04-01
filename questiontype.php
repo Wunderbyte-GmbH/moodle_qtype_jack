@@ -112,7 +112,6 @@ class qtype_jack extends question_type {
         $options->lang = $formdata->lang;
         $DB->update_record('qtype_jack_options', $options);
 
-        $pagecontext = $PAGE->context;
         // On saving, first we need to make sure there is only one file.
 
 
@@ -121,7 +120,7 @@ class qtype_jack extends question_type {
 
             $fs = get_file_storage();
             $storedfiles = $fs->get_area_files(
-                $pagecontext->id,
+                $context->id,
                 'qtype_jack',
                 'responsefiletemplate',
                 $formdata->id);
@@ -132,7 +131,7 @@ class qtype_jack extends question_type {
 
             file_save_draft_area_files(
                 $formdata->responsefiletemplate,
-                $pagecontext->id,
+                $context->id,
                 'qtype_jack',
                 'responsefiletemplate',
                 $formdata->id);

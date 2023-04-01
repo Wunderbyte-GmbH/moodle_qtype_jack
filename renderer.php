@@ -75,9 +75,12 @@ class qtype_jack_renderer extends qtype_renderer {
             }
         }
 
+        // The context for the files which are transmitted is the one of the module.
+        // But we need for the template the context of the question itself.
+
         $fs = get_file_storage();
         if ($storedfiles = $fs->get_area_files(
-            $options->context->id,
+            $question->contextid,
             'qtype_jack',
             'responsefiletemplate',
             $question->id)) {
