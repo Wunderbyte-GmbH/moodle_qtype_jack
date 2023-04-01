@@ -100,15 +100,21 @@ class qtype_jack_edit_form extends question_edit_form {
         $mform->setExpanded('responsetemplateheader');
         $maxbytes = get_config('core', 'maxbytes');
         $mform->addElement(
-            'filepicker',
+            'filemanager',
             'responsefiletemplate',
             get_string('sourcecodetemplatefile', 'qtype_jack'),
             null,
             [
+                'subdirs' => 0,
                 'maxbytes' => $maxbytes,
-                'accepted_types' => '*',
+                'areamaxbytes' => 10485760,
+                'maxfiles' => 1,
+                'accepted_types' => ['.jar', '.java'],
+                'return_types' => FILE_INTERNAL | FILE_EXTERNAL,
             ]
         );
+
+        $types = $qtype->filetypeslist_options();
 
         $mform->addElement('textarea', 'responsetemplate', get_string('responsetemplate', 'qtype_jack'),
                 array('rows' => 10, 'cols' => 100));
