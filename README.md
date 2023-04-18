@@ -21,9 +21,12 @@ The role should have the following contexts:
 
 The role should have the following permissions:
 - qtype/jack:access
+- moodle/course:view
 - webservice/rest:use
+- mod/quiz:view
+- mod/quiz:viewreports
 
-2. Add this user to the list of authorized users for the "qtype Jack external" webervice.
+2. Add this user to the list of authorized users for the "qtype Jack external" web service.
 During the plugin installation, a web service with the necessary functions and the shortname "qtype Jack external" is automatically created.
 
 Only authorised users can access this webservice. You need to got to
