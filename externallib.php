@@ -161,7 +161,7 @@ class jack extends external_api {
 
                     // We chose the language via the set langauge for the question.
                     // There still is a check if the returned language is within the array of supported languages.
-                    $lang = $questionjacksettings->lang;
+                    $lang = $options->lang ?? '';
 
                     // If at this point, the language is not one of the supported langauges, we use English.
                     if (!in_array($lang, SUPPORTED_LANGUAGES)) {
