@@ -43,7 +43,7 @@ class backup_qtype_jack_plugin extends backup_qtype_plugin {
                 'responseformat', 'responserequired', 'responsefieldlines',
                 'attachments', 'attachmentsrequired', 'graderinfo',
                 'graderinfoformat', 'responsetemplate', 'responsetemplateformat', 'filetypeslist',
-            'testdriver', 'ruleset'));
+                'lang', 'testdriver', 'ruleset'));
 
         // Now the own qtype tree.
         $pluginwrapper->add_child($jack);
@@ -51,7 +51,7 @@ class backup_qtype_jack_plugin extends backup_qtype_plugin {
         // Set source to populate the data.
         $jack->set_source_sql("SELECT qo.id, qo.responseformat, qo.responserequired, qo.responsefieldlines,
                 qo.attachments, qo.attachmentsrequired, qo.graderinfo, qo.graderinfoformat, qo.responsetemplate,
-                qo.responsetemplateformat, qo.filetypeslist, q.testdriver, q.ruleset
+                qo.responsetemplateformat, qo.filetypeslist, q.testdriver, q.ruleset, qo.lang
                FROM {qtype_jack_options} qo, {question_jack} q
               WHERE qo.questionid = ?
               AND q.questionid = ?",
@@ -74,6 +74,7 @@ class backup_qtype_jack_plugin extends backup_qtype_plugin {
     public static function get_qtype_fileareas() {
         return array(
             'graderinfo' => 'question_created',
+            'responsefiletemplate' => 'question_created',
         );
     }
 }

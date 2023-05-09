@@ -169,6 +169,7 @@ class qtype_jack extends question_type {
         $question->graderinfoformat = $questiondata->options->graderinfoformat;
         $question->responsetemplate = $questiondata->options->responsetemplate;
         $question->responsetemplateformat = $questiondata->options->responsetemplateformat;
+        $question->lang = $questiondata->options->lang;
         $filetypesutil = new \core_form\filetypes_util();
     }
 
@@ -351,6 +352,9 @@ class qtype_jack extends question_type {
             $qo->$field = $format->getpath($data, array('#', $field, 0, '#'), '');
         }
 
+        $filexml = $format->getpath($data, array('#', 'file'), array());
+        $qo->responsefiletemplate = $format->import_files_as_draft($filexml);
+
         return $qo;
     }
 
@@ -366,6 +370,10 @@ class qtype_jack extends question_type {
       * @return bool|string
       */
     public function export_to_xml($question, qformat_xml $format, $extra=null) {
+
+        $fs = get_file_storage();
+        $contextid = $question->contextid;
+
         $extraquestionfields = $this->extra_question_fields();
         if (!is_array($extraquestionfields)) {
             return false;
@@ -406,6 +414,10 @@ class qtype_jack extends question_type {
 
             $expout .= $format->write_answer($answer, $extra);
         }
+
+        $files = $fs->get_area_files($contextid, 'qtype_jack', 'responsefiletemplate', $question->id);
+        $expout .= "    ".$this->write_files($files, 2)."\n";;
+
         return $expout;
     }
 
@@ -431,6 +443,7 @@ class qtype_jack extends question_type {
             'responsetemplate',
             'responsetemplateformat',
             'filetypeslist',
+            'lang',
         );
     }
 
@@ -449,6 +462,31 @@ class qtype_jack extends question_type {
             'testdriver',
             'ruleset',
         );
+    }
+
+    /**
+     * Convert files into text output in the given format.
+     * This method is copied from qformat_default as a quick fix, as the method there is
+     * protected.
+     * @param array $files
+     * @param int $indent Number of spaces to indent
+     * @return string $string
+     */
+    public function write_files($files, $indent) {
+        if (empty($files)) {
+            return '';
+        }
+        $string = '';
+        foreach ($files as $file) {
+            if ($file->is_directory()) {
+                continue;
+            }
+            $string .= str_repeat('  ', $indent);
+            $string .= '<file name="' . $file->get_filename() . '" encoding="base64">';
+            $string .= base64_encode($file->get_content());
+            $string .= "</file>\n";
+        }
+        return $string;
     }
 
 }
