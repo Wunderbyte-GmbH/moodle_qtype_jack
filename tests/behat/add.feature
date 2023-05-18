@@ -19,15 +19,15 @@ Feature: Test creating an jack question
     And I navigate to "Question bank" in current page administration
 
   Scenario: Create an jack question with Response format set to 'HTML editor'
-    When I add a "jack" question filling the form with:
+    When I add a "JACK" question filling the form with:
       | Question name            | jack-001                      |
       | Question text            | Write an jack with 500 words. |
-      | General feedback         | This is general feedback       |
+      | General feedback         | This is general feedback      |
     Then I should see "jack-001"
 
   Scenario: Create an jack question with Response format set to 'HTML editor with the file picker'
-    When I add a "jack" question filling the form with:
+    When I add a "JACK" question filling the form with:
       | Question name            | jack-002                      |
       | Question text            | Write an jack with 500 words. |
-      | General feedback         | This is general feedback       |
+      | General feedback         | This is general feedback      |
     Then I should see "jack-002"
