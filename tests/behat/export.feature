@@ -18,15 +18,18 @@ Feature: Test exporting jack questions
       | contextlevel | reference | name           |
       | Course       | C1        | Test questions |
     And the following "questions" exist:
-      | questioncategory | qtype | name      | template         | testdriver | ruleset |
-      | Test questions   | jack | jack-001 | editor           | x | y |
-      | Test questions   | jack | jack-002 | editorfilepicker | x | y |
-      | Test questions   | jack | jack-003 | plain            | x | y |
-    And I log in as "teacher1"
-    And I am on "Course 1" course homepage
+      | questioncategory | qtype | name     | template         | testdriver | ruleset |
+      | Test questions   | jack  | jack-001 | editor           | x          | y       |
+      | Test questions   | jack  | jack-002 | editorfilepicker | x          | y       |
+      | Test questions   | jack  | jack-003 | plain            | x          | y       |
+    ## And I log in as "teacher1"
+    ## And I am on "Course 1" course homepage
 
+  @javascript
   Scenario: Export 3 jack questions
-    When I navigate to "Question bank > Export" in current page administration
+    When I am on the "Course 1" "core_question > course question export" page logged in as teacher1
+    ## When I navigate to "Question bank" in current page administration
+    ## And I set the field "jump" to "Export"
     And I set the field "id_format_xml" to "1"
     And I press "Export questions to file"
     Then following "click here" should download between "2600" and "3500" bytes
