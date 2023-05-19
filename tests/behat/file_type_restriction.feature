@@ -20,7 +20,7 @@ I need to limit the submittable file types
       | contextlevel | reference | name           |
       | Course       | C1        | Test questions |
     And the following "questions" exist:
-      | questioncategory | qtype       | name  | questiontext    | defaultmark |
+      | questioncategory | qtype       | name | questiontext    | defaultmark |
       | Test questions   | jack       | TF1   | First question  | 20          |
     And the following "activities" exist:
       | activity   | name   | intro              | course | idnumber | grade |
