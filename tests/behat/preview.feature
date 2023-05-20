@@ -18,38 +18,56 @@ Feature: Preview jack questions
       | contextlevel | reference | name           |
       | Course       | C1        | Test questions |
     And the following "questions" exist:
-      | questioncategory | qtype | name      | template         | testdriver | ruleset |
-      | Test questions   | jack | jack-001 | editor           | x | y |
-      | Test questions   | jack | jack-002 | editorfilepicker | x | y |
-      | Test questions   | jack | jack-003 | plain            | x | y |
+      | questioncategory | qtype | name    | template         | testdriver | ruleset |
+      | Test questions   | jack | jack-001 | editor           | x          | y       |
+      | Test questions   | jack | jack-002 | editorfilepicker | x          | y       |
+      | Test questions   | jack | jack-003 | plain            | x          | y       |
     Given I log in as "teacher1"
     And I am on "Course 1" course homepage
-    And I navigate to "Question bank" in current page administration
 
   @javascript @_switch_window
-  Scenario: Preview an jack question and submit a partially correct response.
-    When I choose "Preview" action for "jack-001" in the question bank
+  Scenario: Preview an jack-001 question and submit a partially correct response.
+    When I navigate to "Question bank" in current page administration
+    And I choose "Preview" action for "jack-001" in the question bank
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
     And I should see "Please write a story about a frog."
-    And I switch to the main window
+    And I set the field with xpath "//div[@class='answer']//textarea[contains(@name, '1_answer')]" to "A story about frogs."
+    And I press "Submit and finish"
+    And I should see "I hope your story had a beginning, a middle and an end."
 
-  @javascript @_switch_window
-  Scenario: Preview an jack question and submit a partially correct response.
+  @javascript @_file_upload @_switch_window
+  Scenario: Preview an jack-002 question and submit a correct response.
+    And I follow "Private files"
+    And I upload "question/type/jack/tests/fixtures/test.jar" file to "Files" filemanager
+    And I press "Save changes"
+    And I should see "test.jar" in the ".fp-content .fp-file" "css_element"
+    And I am on "Course 1" course homepage
+    And I navigate to "Question bank" in current page administration
     When I choose "Preview" action for "jack-002" in the question bank
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
     And I should see "Please write a story about a frog."
     And I should see "You can drag and drop files here to add them."
-    And I switch to the main window
+    And I click on "Add..." "button"
+    And I click on "Private files" "link" in the ".fp-repo-area" "css_element"
+    And I click on "test.jar" "link"
+    And I click on "Select this file" "button"
+    # Wait for the page to "settle".
+    And I wait until the page is ready
+    And I press "Submit and finish"
+    And I should see "I hope your story had a beginning, a middle and an end."
 
   @javascript @_switch_window
-  Scenario: Preview an jack question and submit a partially correct response.
-    When I choose "Preview" action for "jack-003" in the question bank
+  Scenario: Preview an jack-003 question and submit a partially correct response.
+    When I navigate to "Question bank" in current page administration
+    And I choose "Preview" action for "jack-003" in the question bank
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
     And I should see "Please write a story about a frog."
-    And I switch to the main window
+    And I set the field with xpath "//div[@class='answer']//textarea[contains(@name, '1_answer')]" to "This is a story about the frog."
+    And I press "Submit and finish"
+    And I should see "I hope your story had a beginning, a middle and an end."
