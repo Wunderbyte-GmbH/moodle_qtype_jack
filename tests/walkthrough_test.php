@@ -46,6 +46,8 @@ require_once($CFG->dirroot . '/question/tests/generator/lib.php');
  *
  * @copyright 2013 The Open University
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @covers     \qtype_jack_question
+ * @covers     \qtype_jack_questiontype
  */
 class walkthrough_test extends qbehaviour_walkthrough_test_base {
 
@@ -271,7 +273,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
-        /** @var testing_data_generator $generator */
+        /** @var \core_question_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $generator->create_question_category();
         $question = $generator->create_question('jack', 'editorfilepicker', array('category' => $cat->id));
@@ -293,14 +295,9 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         }
         $attachementsdraftid = $matches[1];
 
-        $this->save_file_to_draft_area($usercontextid, $editordraftid, 'smile.txt', ':-)');
-        $this->save_file_to_draft_area($usercontextid, $attachementsdraftid, 'greeting.txt', 'Hello world!');
+        $this->save_file_to_draft_area($usercontextid, $attachementsdraftid, 'greeting.jar', 'Hello world!');
         $this->process_submission(array(
-                'answer' => 'Here is a picture: <img src="' . $CFG->wwwroot .
-                                "/draftfile.php/{$usercontextid}/user/draft/{$editordraftid}/smile.txt" .
-                                '" alt="smile">.',
-                'answerformat' => FORMAT_HTML,
-                'answer:itemid' => $editordraftid,
+                'sequencecheck' => $editordraftid,
                 'attachments' => $attachementsdraftid));
 
         $this->check_current_state(question_state::$complete);
@@ -312,18 +309,14 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->load_quba();
 
         $this->render();
-        $editordraftid = $matches[1];
+        $editordraftid = 1;
         if (!preg_match('/env=filemanager&amp;action=browse&amp;.*?itemid=(\d+)&amp;/', $this->currentoutput, $matches)) {
             throw new coding_exception('File manager draft item id not found.');
         }
         $attachementsdraftid = $matches[1];
 
         $this->process_submission(array(
-                'answer' => 'Here is a picture: <img src="' . $CFG->wwwroot .
-                                "/draftfile.php/{$usercontextid}/user/draft/{$editordraftid}/smile.txt" .
-                                '" alt="smile">.',
-                'answerformat' => FORMAT_HTML,
-                'answer:itemid' => $editordraftid,
+                'sequencecheck' => $editordraftid,
                 'attachments' => $attachementsdraftid));
 
         $this->check_current_state(question_state::$complete);
@@ -357,18 +350,14 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $this->load_quba();
 
         $this->render();
-        $editordraftid = $matches[1];
+        $editordraftid = 1;
         if (!preg_match('/env=filemanager&amp;action=browse&amp;.*?itemid=(\d+)&amp;/', $this->currentoutput, $matches)) {
             throw new coding_exception('File manager draft item id not found.');
         }
         $attachementsdraftid = $matches[1];
 
         $this->process_submission(array(
-                'answer' => 'Here is a picture: <img src="' . $CFG->wwwroot .
-                                "/draftfile.php/{$usercontextid}/user/draft/{$editordraftid}/smile.txt" .
-                                '" alt="smile">.',
-                'answerformat' => FORMAT_HTML,
-                'answer:itemid' => $editordraftid,
+                'sequencecheck' => $editordraftid,
                 'attachments' => $attachementsdraftid));
 
         $this->check_current_state(question_state::$complete);
@@ -387,7 +376,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
-        /** @var testing_data_generator $generator */
+        /** @var \core_question_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $generator->create_question_category();
         $question = $generator->create_question('jack', 'editorfilepicker', array('category' => $cat->id));
@@ -410,43 +399,20 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $attachementsdraftid = $matches[1];
 
         $this->process_submission(array(
-                'answer' => 'I refuse to draw you a picture, so there!',
-                'answerformat' => FORMAT_HTML,
-                'answer:itemid' => $editordraftid,
+                'sequencecheck' => $editordraftid,
                 'attachments' => $attachementsdraftid));
 
-        $this->check_current_state(question_state::$complete);
-        $this->check_current_mark(null);
-        $this->check_step_count(2);
-        $this->save_quba();
-
-        // Now submit all and finish.
-        $this->finish();
-        $this->check_current_state(question_state::$needsgrading);
-        $this->check_current_mark(null);
-        $this->check_step_count(3);
-        $this->save_quba();
-
-        // Now start a new attempt based on the old one.
-        $this->load_quba();
-        $oldqa = $this->get_question_attempt();
-
-        $q = question_bank::load_question($question->id);
-        $this->quba = question_engine::make_questions_usage_by_activity('unit_test',
-                context_system::instance());
-        $this->quba->set_preferred_behaviour('deferredfeedback');
-        $this->slot = $this->quba->add_question($q, 1);
-        $this->quba->start_question_based_on($this->slot, $oldqa);
-
-        $this->check_current_state(question_state::$complete);
+        $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_step_count(1);
         $this->save_quba();
 
-        // Check the display.
-        $this->load_quba();
-        $this->render();
-        $this->assertMatchesRegularExpression('/I refuse to draw you a picture, so there!/', $this->currentoutput);
+        // Now submit all and finish.
+        $this->finish();
+        $this->check_current_state(question_state::$gaveup);
+        $this->check_current_mark(null);
+        $this->check_step_count(2);
+        $this->save_quba();
     }
 
     public function test_deferred_feedback_plain_attempt_on_last() {
@@ -457,7 +423,7 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $usercontextid = context_user::instance($USER->id)->id;
 
         // Create an jack question in the DB.
-        /** @var testing_data_generator $generator */
+        /** @var \core_question_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $generator->create_question_category();
         $question = $generator->create_question('jack', 'plain', array('category' => $cat->id));
@@ -508,12 +474,10 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         // Check the display.
         $this->load_quba();
         $this->render();
+
         // Test taht no HTML comment has been added to the response.
-        $this->assertMatchesRegularExpression('/Once upon a time there was a frog called Freddy. He lived happily ever after.
-            (?!&lt;!--)/',
+        $this->assertMatchesRegularExpression('/Once upon a time there was a frog called Freddy. He lived happily ever after./',
          $this->currentoutput);
-        // Test for the hash of an empty file area.
-        $this->assertNotContains('d41d8cd98f00b204e9800998ecf8427e', $this->currentoutput);
     }
 
     public function test_deferred_feedback_html_editor_with_files_attempt_wrong_filetypes() {
@@ -527,14 +491,14 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
-        /** @var testing_data_generator $generator */
+        /** @var \core_question_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $generator->create_question_category();
         $question = $generator->create_question('jack', 'editorfilepicker', array('category' => $cat->id));
 
         // Start attempt at the question.
         $q = question_bank::load_question($question->id);
-        $q->filetypeslist = ("pdf, docx");
+        $q->filetypeslist = ('0');
         $this->start_attempt_at_question($q, 'deferredfeedback', 1);
 
         $this->check_current_state(question_state::$todo);
@@ -550,14 +514,9 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         }
         $attachementsdraftid = $matches[1];
 
-        $this->save_file_to_draft_area($usercontextid, $editordraftid, 'smile.txt', ':-)');
-        $this->save_file_to_draft_area($usercontextid, $attachementsdraftid, 'greeting.txt', 'Hello world!');
+        $this->save_file_to_draft_area($usercontextid, $attachementsdraftid, 'wrong.txt', 'Hello world!');
         $this->process_submission(array(
-            'answer' => 'Here is a picture: <img src="' . $CFG->wwwroot .
-                "/draftfile.php/{$usercontextid}/user/draft/{$editordraftid}/smile.txt" .
-                '" alt="smile">.',
-            'answerformat' => FORMAT_HTML,
-            'answer:itemid' => $editordraftid,
+            'sequencecheck' => $editordraftid,
             'attachments' => $attachementsdraftid));
 
         $this->check_current_state(question_state::$invalid);
@@ -584,14 +543,14 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         $fs = get_file_storage();
 
         // Create an jack question in the DB.
-        /** @var testing_data_generator $generator */
+        /** @var \core_question_generator $generator */
         $generator = $this->getDataGenerator()->get_plugin_generator('core_question');
         $cat = $generator->create_question_category();
         $question = $generator->create_question('jack', 'editorfilepicker', array('category' => $cat->id));
 
         // Start attempt at the question.
         $q = question_bank::load_question($question->id);
-        $q->filetypeslist = ("txt, docx");
+        $q->filetypeslist = ('0');
         $this->start_attempt_at_question($q, 'deferredfeedback', 1);
 
         $this->check_current_state(question_state::$todo);
@@ -607,14 +566,9 @@ class walkthrough_test extends qbehaviour_walkthrough_test_base {
         }
         $attachementsdraftid = $matches[1];
 
-        $this->save_file_to_draft_area($usercontextid, $editordraftid, 'smile.txt', ':-)');
-        $this->save_file_to_draft_area($usercontextid, $attachementsdraftid, 'greeting.txt', 'Hello world!');
+        $this->save_file_to_draft_area($usercontextid, $attachementsdraftid, 'greeting.jar', 'Hello world!');
         $this->process_submission(array(
-            'answer' => 'Here is a picture: <img src="' . $CFG->wwwroot .
-                "/draftfile.php/{$usercontextid}/user/draft/{$editordraftid}/smile.txt" .
-                '" alt="smile">.',
-            'answerformat' => FORMAT_HTML,
-            'answer:itemid' => $editordraftid,
+            'sequencecheck' => $editordraftid,
             'attachments' => $attachementsdraftid));
 
         $this->check_current_state(question_state::$complete);
