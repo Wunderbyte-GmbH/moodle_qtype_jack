@@ -38,6 +38,7 @@ require_once($CFG->libdir . "/phpunit/classes/restore_date_testcase.php");
  *
  * @copyright  2019 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @covers     \restore_qtype_jack_plugin
  */
 class restore_test extends restore_date_testcase {
 

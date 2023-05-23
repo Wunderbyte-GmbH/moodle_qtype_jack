@@ -42,8 +42,14 @@ require_once($CFG->dirroot . '/question/type/jack/tests/helper.php');
  *
  * @copyright  2009 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @covers     \qtype_jack_question
  */
 class question_test extends advanced_testcase {
+    /**
+     * Test of get_question_summary
+     *
+     * @return void
+     */
     public function test_get_question_summary() {
         $jackclass = new qtype_jack_test_helper();
         $jack = $jackclass->make_jack_question_plain();
@@ -51,6 +57,11 @@ class question_test extends advanced_testcase {
         $this->assertEquals('Hello [world]', $jack->get_question_summary());
     }
 
+    /**
+     * Test of summarise_response
+     *
+     * @return void
+     */
     public function test_summarise_response() {
         $longstring = str_repeat('0123456789', 50);
         $jackclass = new qtype_jack_test_helper();
@@ -59,6 +70,11 @@ class question_test extends advanced_testcase {
                 array('answer' => $longstring, 'answerformat' => FORMAT_HTML)));
     }
 
+    /**
+     * Test of is_same_response
+     *
+     * @return void
+     */
     public function test_is_same_response() {
         $jackclass = new qtype_jack_test_helper();
         $jack = $jackclass->make_jack_question_plain();
@@ -104,6 +120,11 @@ class question_test extends advanced_testcase {
                 array('answer' => '0')));
     }
 
+    /**
+     * Test of is_same_response with template
+     *
+     * @return void
+     */
     public function test_is_same_response_with_template() {
         $jackclass = new qtype_jack_test_helper();
         $jack = $jackclass->make_jack_question_plain();
@@ -148,6 +169,11 @@ class question_test extends advanced_testcase {
                 array('answer' => '0')));
     }
 
+    /**
+     * Test of is_complete_response
+     *
+     * @return void
+     */
     public function test_is_complete_response() {
         $this->resetAfterTest(true);
 
@@ -247,7 +273,5 @@ class question_test extends advanced_testcase {
         $jack->reponserequired = 1;
         $this->assertTrue($jack->is_complete_response(
                 array('attachments' => $attachments[1])));
-
     }
-
 }
