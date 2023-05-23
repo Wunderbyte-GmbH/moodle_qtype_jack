@@ -38,6 +38,7 @@ require_once($CFG->libdir . "/phpunit/classes/restore_date_testcase.php");
  *
  * @copyright  2019 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @covers     \restore_qtype_jack_plugin
  */
 class restore_test extends restore_date_testcase {
 
@@ -68,16 +69,16 @@ class restore_test extends restore_date_testcase {
 
         // Verify that the restored question has options.
         $contexts = new question_edit_contexts(context_course::instance($newcourseid));
-        $newcategory = question_make_default_categories($contexts->all());//var_dump($newcategory);
+        $newcategory = question_make_default_categories($contexts->all());
 
         if ($CFG->version > '2022041900') {
-            // Moodle 4.0 has new question bank structure:
+            // Moodle 4.0 has new question bank structure.
             $this->assertTrue($DB->record_exists('question_bank_entries', ['questioncategoryid' => $newcategory->id]));
             $qde = $DB->get_record('question_bank_entries', ['questioncategoryid' => $newcategory->id]);
             $qv = $DB->get_record('question_versions', ['questionbankentryid' => $qde->id]);
             $this->assertTrue($DB->record_exists('qtype_jack_options', ['questionid' => $qv->questionid]));
         } else {
-            // Moodle 3.x - old question bank structure:
+            // Moodle 3.x - old question bank structure.
             $newjack = $DB->get_record('question', ['category' => $newcategory->id, 'qtype' => 'jack']);
             $this->assertTrue($DB->record_exists('qtype_jack_options', ['questionid' => $newjack->id]));
         }

@@ -40,6 +40,7 @@ require_once($CFG->dirroot . '/question/type/jack/questiontype.php');
  *
  * @copyright  2010 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @covers     \qtype_jack_qyestiontype
  */
 class questiontype_test extends advanced_testcase {
     /**
@@ -79,22 +80,41 @@ class questiontype_test extends advanced_testcase {
         return $q;
     }
 
+    /**
+     * Test of qtype->name
+     *
+     * @return void
+     */
     public function test_name() {
         $this->assertEquals($this->qtype->name(), 'jack');
     }
 
+    /**
+     * Test of qtype->can_analyse_responses
+     *
+     * @return void
+     */
     public function test_can_analyse_responses() {
         $this->assertFalse($this->qtype->can_analyse_responses());
     }
 
+    /**
+     * Test of qtype->get_random_guess_score
+     *
+     * @return void
+     */
     public function test_get_random_guess_score() {
         $q = $this->get_test_question_data();
         $this->assertEquals(0, $this->qtype->get_random_guess_score($q));
     }
 
+    /**
+     * Test of qtype->get_possible_responses
+     *
+     * @return void
+     */
     public function test_get_possible_responses() {
         $q = $this->get_test_question_data();
         $this->assertEquals(array(), $this->qtype->get_possible_responses($q));
-
     }
 }

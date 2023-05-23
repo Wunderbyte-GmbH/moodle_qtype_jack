@@ -114,7 +114,6 @@ class qtype_jack extends question_type {
 
         // On saving, first we need to make sure there is only one file.
 
-
         // Add files.
         if (!empty($formdata->responsefiletemplate)) {
 
