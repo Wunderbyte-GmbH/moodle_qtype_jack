@@ -34,9 +34,9 @@ http://your-moodle/admin/settings.php?section=externalservices (Site administrat
 
 In case all users of your Moodle site have to accept one or more user agreement, the administrator will need to make sure the newly created user has accepted the necessary agreements. Otherwise, the web service might not run smoothly. Log in as administrator and go to https://your-moodle/admin/tool/policy/acceptances.php (Site administration / Users / Privacy and policies / User agreements) to check the user’s acceptance.
 
-3. Create a token for the user. You will need to communicate this token to the University  of Duisburg-Essen at jack(at)paluno.uni-due.de.
+3. Create a token. Go to https://your-moodle/admin/webservice/tokens.php?action=create (Home / Site Administration / Server / Web services / Manage tokens). As "User" select the user you created in step 1. As "Service" select "qtype Jack external".
 
-Go to https://your-moodle/admin/webservice/tokens.php?action=create (Home / Site Administration / Server / Web services / Manage tokens) and create the token for the service “qtype Jack external” and the authorised user.
+You will need to communicate this token to the University of Duisburg-Essen at jack(at)paluno.uni-due.de.
 
 Note: The token is bound to the account that created it. If this account is deleted, the token will also disappear. Best create it with a main administrator from which you are sure that it will be will be preserved.
 
