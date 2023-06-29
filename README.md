@@ -36,7 +36,7 @@ In case all users of your Moodle site have to accept one or more user agreement,
 
 3. Create a token. Go to https://your-moodle/admin/webservice/tokens.php?action=create (Home / Site Administration / Server / Web services / Manage tokens). As "User" select the user you created in step 1. As "Service" select "qtype Jack external".
 
-You will need to communicate this token to the University of Duisburg-Essen at jack(at)paluno.uni-due.de.
+You will need to communicate this token along with your site domain (such as moodle.hsnr.de) to the University of Duisburg-Essen at jack(at)paluno.uni-due.de.
 
 Note: The token is bound to the account that created it. If this account is deleted, the token will also disappear. Best create it with a main administrator from which you are sure that it will be will be preserved.
 
