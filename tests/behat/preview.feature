@@ -22,14 +22,17 @@ Feature: Preview jack questions
       | Test questions   | jack | jack-001 | editor           | x          | y       |
       | Test questions   | jack | jack-002 | editorfilepicker | x          | y       |
       | Test questions   | jack | jack-003 | plain            | x          | y       |
+    And the following "user private files" exist:
+      | user     | filepath                                       | filename     |
+      | teacher1 | question/type/jack/tests/fixtures/test.jar     | test.jar     |
+      | teacher1 | question/type/jack/tests/fixtures/template.jar | template.jar |
     Given I log in as "teacher1"
     And I am on "Course 1" course homepage
 
   @javascript
   Scenario: Preview an jack-001 question and submit a partially correct response.
-    When I navigate to "Question bank" in current page administration
-    And I choose "Preview" action for "jack-001" in the question bank
-    And I follow "Preview options"
+    When I am on the "jack-001" "core_question > preview" page logged in as teacher1
+    And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
     And I should see "Please write a story about a frog."
@@ -39,14 +42,8 @@ Feature: Preview jack questions
 
   @javascript @_file_upload
   Scenario: Preview an jack-002 question and submit a correct response.
-    And I follow "Private files" in the user menu
-    And I upload "question/type/jack/tests/fixtures/test.jar" file to "Files" filemanager
-    And I press "Save changes"
-    And I should see "test.jar" in the ".fp-content .fp-file" "css_element"
-    And I am on "Course 1" course homepage
-    And I navigate to "Question bank" in current page administration
-    When I choose "Preview" action for "jack-002" in the question bank
-    And I follow "Preview options"
+    When I am on the "jack-002" "core_question > preview" page logged in as teacher1
+    And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
     And I should see "Please write a story about a frog."
@@ -62,9 +59,8 @@ Feature: Preview jack questions
 
   @javascript
   Scenario: Preview an jack-003 question and submit a partially correct response.
-    When I navigate to "Question bank" in current page administration
-    And I choose "Preview" action for "jack-003" in the question bank
-    And I follow "Preview options"
+    When I am on the "jack-003" "core_question > preview" page logged in as teacher1
+    And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
     And I should see "Please write a story about a frog."
