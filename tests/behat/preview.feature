@@ -67,3 +67,32 @@ Feature: Preview jack questions
     And I set the field with xpath "//div[@class='answer']//textarea[contains(@name, '1_answer')]" to "This is a story about the frog."
     And I press "Submit and finish"
     And I should see "I hope your story had a beginning, a middle and an end."
+
+  @javascript @_file_upload
+  Scenario: Add template to the jack-002 question than preview it and submit a correct response
+    When I am on the "Course 1" "core_question > course question bank" page logged in as teacher1
+    And I choose "Edit question" action for "jack-002" in the question bank
+    And I click on "Add..." "button"
+    And I click on "Private files" "link" in the ".fp-repo-area" "css_element"
+    And I click on "template.jar" "link"
+    And I click on "Select this file" "button"
+    ## Wait for the page to "settle".
+    And I wait until the page is ready
+    ## And I press "Save changes" - does not work for some reasons.
+    And I click on "submitbutton" "button"
+    And I wait until the page is ready
+    And I choose "Preview" action for "jack-002" in the question bank
+    And I expand all fieldsets
+    And I set the field "How questions behave" to "Immediate feedback"
+    And I press "Start again with these options"
+    Then I should see "Download and change the source code template"
+    And I click on "template.jar" "link"
+    And I should see "You can drag and drop files here to add them."
+    And I click on "Add..." "button"
+    And I click on "Private files" "link" in the ".fp-repo-area" "css_element"
+    And I click on "test.jar" "link"
+    And I click on "Select this file" "button"
+    # Wait for the page to "settle".
+    And I wait until the page is ready
+    And I press "Submit and finish"
+    And I should see "I hope your story had a beginning, a middle and an end."
