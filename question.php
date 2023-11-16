@@ -66,6 +66,9 @@ class qtype_jack_question extends question_with_responses {
     /** @var int Converted to an actual list of file types in get_filetypeslist **/
     public $filetypeslist;
 
+    /** @var string */
+    public $lang;
+
     /**
      * Make behaviour
      *
