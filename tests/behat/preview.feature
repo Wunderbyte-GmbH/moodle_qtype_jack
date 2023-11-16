@@ -30,22 +30,23 @@ Feature: Preview jack questions
     And I am on "Course 1" course homepage
 
   @javascript
-  Scenario: Preview an jack-001 question and submit a partially correct response.
+  Scenario: Preview an jack-001 question and submit a partially correct response
     When I am on the "jack-001" "core_question > preview" page logged in as teacher1
     And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
-    And I press "Start again with these options"
+    ## Use button tag name instead of title (Changed in Moodle 4.3)
+    And I press "saverestart"
     And I should see "Please write a story about a frog."
     And I set the field with xpath "//div[@class='answer']//textarea[contains(@name, '1_answer')]" to "A story about frogs."
     And I press "Submit and finish"
     And I should see "I hope your story had a beginning, a middle and an end."
 
   @javascript @_file_upload
-  Scenario: Preview an jack-002 question and submit a correct response.
+  Scenario: Preview an jack-002 question and submit a correct response
     When I am on the "jack-002" "core_question > preview" page logged in as teacher1
     And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
-    And I press "Start again with these options"
+    And I press "saverestart"
     And I should see "Please write a story about a frog."
     And I should see "You can drag and drop files here to add them."
     And I click on "Add..." "button"
@@ -58,11 +59,11 @@ Feature: Preview jack questions
     And I should see "I hope your story had a beginning, a middle and an end."
 
   @javascript
-  Scenario: Preview an jack-003 question and submit a partially correct response.
+  Scenario: Preview an jack-003 question and submit a partially correct response
     When I am on the "jack-003" "core_question > preview" page logged in as teacher1
     And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
-    And I press "Start again with these options"
+    And I press "saverestart"
     And I should see "Please write a story about a frog."
     And I set the field with xpath "//div[@class='answer']//textarea[contains(@name, '1_answer')]" to "This is a story about the frog."
     And I press "Submit and finish"
@@ -84,7 +85,7 @@ Feature: Preview jack questions
     And I choose "Preview" action for "jack-002" in the question bank
     And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
-    And I press "Start again with these options"
+    And I press "saverestart"
     Then I should see "Download and change the source code template"
     And I click on "template.jar" "link"
     And I should see "You can drag and drop files here to add them."
