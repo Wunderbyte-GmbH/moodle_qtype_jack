@@ -69,6 +69,12 @@ class qtype_jack_question extends question_with_responses {
     /** @var string */
     public $lang;
 
+    /** @var int */
+    public $reponserequired;
+
+    /** @var int */
+    public $attachmensrequired;
+
     /**
      * Make behaviour
      *
