@@ -61,6 +61,7 @@ class jack extends external_api {
     public static function get_next_jackquestion() {
 
         $context = context_system::instance();
+        self::validate_context($context);
         require_capability('qtype/jack:access', $context);
 
         $result = array();
@@ -101,6 +102,8 @@ class jack extends external_api {
     public static function get_next_question() {
         global $DB, $CFG;
 
+        $context = context_system::instance();
+        self::validate_context($context);
         $jackquestions = $DB->get_records('question', array('qtype' => 'jack'));
 
         foreach ($jackquestions as $jackquestion) {
@@ -206,6 +209,7 @@ class jack extends external_api {
         global $DB, $CFG;
 
         $context = context_system::instance();
+        self::validate_context($context);
         require_capability('qtype/jack:access', $context);
         require_once($CFG->dirroot.'/question/engine/lib.php');
 
