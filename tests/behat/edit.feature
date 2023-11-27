@@ -18,10 +18,10 @@ Feature: Test editing an jack question
       | contextlevel | reference | name           |
       | Course       | C1        | Test questions |
     And the following "questions" exist:
-      | questioncategory | qtype | name      | template         | testdriver | ruleset |
-      | Test questions   | jack | jack-001 | editor           | x | y |
-      | Test questions   | jack | jack-002 | editorfilepicker | x | y |
-      | Test questions   | jack | jack-003 | plain            | x | y |
+      | questioncategory | qtype | name    | template         | testdriver | ruleset |
+      | Test questions   | jack | jack-001 | editor           | x          | y       |
+      | Test questions   | jack | jack-002 | editorfilepicker | x          | y       |
+      | Test questions   | jack | jack-003 | plain            | x          | y       |
 
   Scenario: Edit an jack question
     When I log in as "teacher1"
