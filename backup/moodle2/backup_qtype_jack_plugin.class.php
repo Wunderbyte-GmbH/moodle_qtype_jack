@@ -52,7 +52,7 @@ class backup_qtype_jack_plugin extends backup_qtype_plugin {
         $jack->set_source_sql("SELECT qo.id, qo.responseformat, qo.responserequired, qo.responsefieldlines,
                 qo.attachments, qo.attachmentsrequired, qo.graderinfo, qo.graderinfoformat, qo.responsetemplate,
                 qo.responsetemplateformat, qo.filetypeslist, q.testdriver, q.ruleset, qo.lang
-               FROM {qtype_jack_options} qo, {question_jack} q
+               FROM {qtype_jack_options} qo, {qtype_jack_qsettings} q
               WHERE qo.questionid = ?
               AND q.questionid = ?",
             array(backup::VAR_PARENTID, backup::VAR_PARENTID));

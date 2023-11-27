@@ -34,7 +34,7 @@ function xmldb_qtype_jack_upgrade($oldversion) {
     if ($oldversion < 2022112101) {
 
         // Define field lang to be added to qtype_jack_options.
-        $table = new xmldb_table('qtype_jack_options');
+        $table = new xmldb_table('question_jack');
         $field = new xmldb_field('lang', XMLDB_TYPE_CHAR, '16', null, null, null, null, 'filetypeslist');
 
         // Conditionally launch add field lang.
@@ -44,6 +44,20 @@ function xmldb_qtype_jack_upgrade($oldversion) {
 
         // Jack savepoint reached.
         upgrade_plugin_savepoint(true, 2022112101, 'qtype', 'jack');
+    }
+
+    if ($oldversion < 2023112700) {
+
+        // Prepare to rename question_jack table as per Moodle standards.
+        $table = new xmldb_table('question_jack');
+
+        // Rename question_jack table to qtype_jack_qsettings as per Moodle standards.
+        if (!$dbman->table_exists($table)) {
+            $dbman->rename_table($table, 'qtype_jack_qsettings');
+        }
+
+        // Jack savepoint reached.
+        upgrade_plugin_savepoint(true, 2023112700, 'qtype', 'jack');
     }
 
     return true;
