@@ -23,7 +23,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define('SUPPORTED_LANGUAGES', ['en', 'de']);
+define('QTYPE_JACK_SUPPORTED_LANGUAGES', ['en', 'de']);
 
 /**
  * Checks file access for jack questions.

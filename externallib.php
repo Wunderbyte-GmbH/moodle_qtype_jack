@@ -164,7 +164,7 @@ class jack extends external_api {
                     $lang = $options->lang ?? '';
 
                     // If at this point, the language is not one of the supported langauges, we use English.
-                    if (!in_array($lang, SUPPORTED_LANGUAGES)) {
+                    if (!in_array($lang, QTYPE_JACK_SUPPORTED_LANGUAGES)) {
                         $lang = 'en';
                     }
 

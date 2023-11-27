@@ -53,7 +53,7 @@ class qtype_jack_edit_form extends question_edit_form {
         $alltranslations = get_string_manager()->get_list_of_translations();
         $translations = [];
         foreach ($alltranslations as $key => $value) {
-            if (in_array($key, SUPPORTED_LANGUAGES)) {
+            if (in_array($key, QTYPE_JACK_SUPPORTED_LANGUAGES)) {
                 $translations[$key] = $value;
             }
         }

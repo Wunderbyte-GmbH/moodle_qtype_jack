@@ -106,7 +106,7 @@ class qtype_jack extends question_type {
         $options->responsetemplateformat = 0;
 
         if (!isset($formdata->lang)) {
-            $formdata->lang = in_array($CFG->lang, SUPPORTED_LANGUAGES) ? $CFG->lang : 'en';
+            $formdata->lang = in_array($CFG->lang, QTYPE_JACK_SUPPORTED_LANGUAGES) ? $CFG->lang : 'en';
         }
 
         $options->lang = $formdata->lang;
