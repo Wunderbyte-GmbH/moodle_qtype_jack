@@ -19,7 +19,7 @@
  *
  * @package    qtype_jack
  * @subpackage jack
- * @copyright  2009 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -40,7 +40,7 @@ require_once($CFG->dirroot . '/question/type/jack/tests/helper.php');
 /**
  * Unit tests for the matching question definition class.
  *
- * @copyright  2009 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @covers     \qtype_jack_question
  */

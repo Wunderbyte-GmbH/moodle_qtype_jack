@@ -18,7 +18,7 @@
  * Test restore logic.
  *
  * @package    qtype_jack
- * @copyright  2019 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -36,7 +36,7 @@ require_once($CFG->libdir . "/phpunit/classes/restore_date_testcase.php");
 /**
  * Test restore logic.
  *
- * @copyright  2019 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @covers     \restore_qtype_jack_plugin
  */

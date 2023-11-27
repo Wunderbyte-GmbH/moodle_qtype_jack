@@ -18,7 +18,7 @@
  * Defines the editing form for the jack question type.
  *
  * @package    qtype_jack
- * @copyright  2007 Jamie Pratt me@jamiep.org
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -31,7 +31,7 @@ require_once($CFG->dirroot.'/question/type/jack/lib.php');
 /**
  * jack question type editing form.
  *
- * @copyright  2007 Jamie Pratt me@jamiep.org
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_edit_form extends question_edit_form {

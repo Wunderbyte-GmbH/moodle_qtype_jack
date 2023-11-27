@@ -19,7 +19,7 @@
  *
  * @package    qtype_jack
  * @subpackage jack
- * @copyright  2009 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,7 +30,7 @@ require_once($CFG->dirroot . '/question/type/questionbase.php');
 /**
  * Represents an jack question.
  *
- * @copyright  2009 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_question extends question_with_responses {

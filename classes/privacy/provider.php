@@ -18,7 +18,7 @@
  * Privacy Subsystem implementation for qtype_jack.
  *
  * @package    qtype_jack
- * @copyright  2018 Andrew Nicols <andrew@nicols.co.uk>
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -27,7 +27,7 @@ namespace qtype_jack\privacy;
 /**
  * Privacy Subsystem for qtype_jack implementing null_provider.
  *
- * @copyright  2018 Andrew Nicols <andrew@nicols.co.uk>
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements \core_privacy\local\metadata\null_provider {

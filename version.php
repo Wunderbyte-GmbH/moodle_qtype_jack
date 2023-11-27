@@ -19,7 +19,7 @@
  *
  * @package    qtype_jack
  * @subpackage jack
- * @copyright  2005 Mark Nielsen
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

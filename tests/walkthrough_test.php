@@ -18,7 +18,7 @@
  * This file contains tests that walks jack questions through some attempts.
  *
  * @package   qtype_jack
- * @copyright 2013 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -44,7 +44,7 @@ require_once($CFG->dirroot . '/question/tests/generator/lib.php');
 /**
  * Unit tests for the jack question type.
  *
- * @copyright 2013 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @covers     \qtype_jack_question
  * @covers     \qtype_jack_questiontype

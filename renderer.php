@@ -19,7 +19,7 @@
  *
  * @package    qtype_jack
  * @subpackage jack
- * @copyright  2009 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,7 +30,7 @@ require_once($CFG->dirroot . '/question/type/questionbase.php');
 /**
  * Generates the output for jack questions.
  *
- * @copyright  2009 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_renderer extends qtype_renderer {
@@ -194,7 +194,7 @@ class qtype_jack_renderer extends qtype_renderer {
 /**
  * A base class to abstract out the differences between different type of response format.
  *
- * @copyright  2011 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 abstract class qtype_jack_format_renderer_base extends plugin_renderer_base {
@@ -233,7 +233,7 @@ abstract class qtype_jack_format_renderer_base extends plugin_renderer_base {
 /**
  * An jack format renderer for jacks where the student should not enter any inline response.
  *
- * @copyright  2013 Binghamton University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_format_noinline_renderer extends plugin_renderer_base {
@@ -280,7 +280,7 @@ class qtype_jack_format_noinline_renderer extends plugin_renderer_base {
 /**
  * An jack format renderer for jacks where the student should use the HTML editor without the file picker.
  *
- * @copyright  2011 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_format_editor_renderer extends plugin_renderer_base {
@@ -442,7 +442,7 @@ class qtype_jack_format_editor_renderer extends plugin_renderer_base {
 /**
  * An jack format renderer for jacks where the student should use the HTML editor with the file picker.
  *
- * @copyright  2011 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_editor_renderer {
@@ -571,7 +571,7 @@ class qtype_jack_format_editorfilepicker_renderer extends qtype_jack_format_edit
 /**
  * An jack format renderer for jacks where the student should use a plain input box, but with a normal, proportional font.
  *
- * @copyright  2011 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_format_plain_renderer extends plugin_renderer_base {
@@ -638,7 +638,7 @@ class qtype_jack_format_plain_renderer extends plugin_renderer_base {
  *
  * You might use this, for example, for a question where the students should type computer code.
  *
- * @copyright  2011 The Open University
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack_format_monospaced_renderer extends qtype_jack_format_plain_renderer {
