@@ -25,7 +25,7 @@
         <KEY NAME="questionid" TYPE="foreign-unique" FIELDS="questionid" REFTABLE="question" REFFIELDS="id"/>
       </KEYS>
     </TABLE>
-    <TABLE NAME="qtype_jack_qsettings" COMMENT="Extra settings for jack question instances.">
+    <TABLE NAME="qtype_jack" COMMENT="Extra settings for jack question instances.">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Foreign key linking to the question table."/>

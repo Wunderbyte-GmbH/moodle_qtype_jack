@@ -156,7 +156,7 @@ class jack extends external_api {
                         $data->submission = $submission->value;
                     }
                     // Get jack data for this question.
-                    $questionjacksettings = $DB->get_record('qtype_jack_qsettings',
+                    $questionjacksettings = $DB->get_record('qtype_jack',
                         array('questionid' => $jackquestion->id));
                     $data->testdriver = $questionjacksettings->testdriver;
                     $data->ruleset = $questionjacksettings->ruleset;

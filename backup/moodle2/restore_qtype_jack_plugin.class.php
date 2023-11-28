@@ -87,7 +87,7 @@ class restore_qtype_jack_plugin extends restore_qtype_plugin {
             $newitemid = $DB->insert_record('qtype_jack_options', $data);
             $this->set_mapping('qtype_jack', $oldid, $newitemid);
             $options->questionid = $this->get_new_parentid('question');
-            $newitemid = $DB->insert_record('qtype_jack_qsettings', $options);
+            $newitemid = $DB->insert_record('qtype_jack', $options);
         }
     }
 

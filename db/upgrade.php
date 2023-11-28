@@ -46,18 +46,18 @@ function xmldb_qtype_jack_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2022112101, 'qtype', 'jack');
     }
 
-    if ($oldversion < 2023112700) {
+    if ($oldversion < 2023112704) {
 
         // Prepare to rename question_jack table as per Moodle standards.
         $table = new xmldb_table('question_jack');
 
-        // Rename question_jack table to qtype_jack_qsettings as per Moodle standards.
         if (!$dbman->table_exists($table)) {
-            $dbman->rename_table($table, 'qtype_jack_qsettings');
+        // Rename question_jack table to qtype_jack as per Moodle standards.
+            $dbman->rename_table($table, 'qtype_jack');
         }
 
         // Jack savepoint reached.
-        upgrade_plugin_savepoint(true, 2023112700, 'qtype', 'jack');
+        upgrade_plugin_savepoint(true, 2023112704, 'qtype', 'jack');
     }
 
     return true;

@@ -66,7 +66,7 @@ class qtype_jack extends question_type {
         parent::get_question_options($question);
 
         // Get jack options.
-        $jackoptions = $DB->get_record('qtype_jack_qsettings', array('questionid' => $question->id));
+        $jackoptions = $DB->get_record('qtype_jack', array('questionid' => $question->id));
         $question->testdriver = $jackoptions->testdriver;
         $question->ruleset = $jackoptions->ruleset;
     }
@@ -137,17 +137,17 @@ class qtype_jack extends question_type {
         }
 
         // Add jack options.
-        $jackoptions = $DB->get_record('qtype_jack_qsettings', array('questionid' => $formdata->id));
+        $jackoptions = $DB->get_record('qtype_jack', array('questionid' => $formdata->id));
         if (empty($jackoptions)) {
             $jackoptions = new stdClass();
             $jackoptions->questionid = $formdata->id;
             $jackoptions->timecreated = time();
-            $jackoptions->id = $DB->insert_record('qtype_jack_qsettings', $jackoptions);
+            $jackoptions->id = $DB->insert_record('qtype_jack', $jackoptions);
         }
         $jackoptions->testdriver = $formdata->testdriver;
         $jackoptions->ruleset = $formdata->ruleset;
 
-        $DB->update_record('qtype_jack_qsettings', $jackoptions);
+        $DB->update_record('qtype_jack', $jackoptions);
     }
 
     /**
@@ -183,7 +183,7 @@ class qtype_jack extends question_type {
         global $DB;
 
         $DB->delete_records('qtype_jack_options', array('questionid' => $questionid));
-        $DB->delete_records('qtype_jack_qsettings', array('questionid' => $questionid));
+        $DB->delete_records('qtype_jack', array('questionid' => $questionid));
         parent::delete_question($questionid, $contextid);
     }
 
@@ -457,7 +457,7 @@ class qtype_jack extends question_type {
      * @return mixed array as above, or null to tell the base class to do nothing.
      */
     public function extra_jack_question_fields() {
-        return array('qtype_jack_qsettings',
+        return array('qtype_jack',
             'testdriver',
             'ruleset',
         );
