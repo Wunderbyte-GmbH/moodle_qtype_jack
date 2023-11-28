@@ -73,5 +73,5 @@ $string['workwithsourcecodetemplatefile'] = 'Download and change the source code
 $string['ruleset'] = 'Rule set';
 
 $string['testdriver'] = 'Testdriver';
-$string['jack:access'] = '';
+$string['jack:access'] = 'Has access to question type jack';
 $string['setlanguage'] = 'Set language';

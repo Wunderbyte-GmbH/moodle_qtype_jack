@@ -73,5 +73,5 @@ $string['workwithsourcecodetemplatefile'] = 'Laden Sie die Quellcodevorlage um s
 $string['ruleset'] = 'Regelsatz';
 
 $string['testdriver'] = 'Testtreiber';
-$string['jack:access'] = '';
+$string['jack:access'] = 'Hat Zugriff auf Fragetyp Jack';
 $string['setlanguage'] = 'Sprache einstellen';
