@@ -44,11 +44,16 @@ function qtype_jack_pluginfile($course, $cm, $context, $filearea, $args, $forced
     global $CFG;
 
     if ($filearea === 'responsefiletemplate') {
+
+        list($context, $course, $cm) = get_context_info_array($context->id);
+        require_login($course, false, $cm);
+
         $fs = get_file_storage();
-        $file = $fs->get_file($context->id, 'qtype_jack', $filearea, $args[0], '/', $args[1]);
-        // Send the file, always forcing download, we don't want options.
-        \core\session\manager::write_close();
-        send_stored_file($file, 0, 0, true);
+        if ($file = $fs->get_file($context->id, 'qtype_jack', $filearea, $args[0], '/', $args[1])) {
+            send_stored_file($file, 0, 0, true);
+        } else {
+            send_file_not_found();
+        }
     } else {
         require_once($CFG->libdir . '/questionlib.php');
         question_pluginfile($course, $context, 'qtype_jack', $filearea, $args, $forcedownload, $options);
