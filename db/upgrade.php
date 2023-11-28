@@ -51,8 +51,8 @@ function xmldb_qtype_jack_upgrade($oldversion) {
         // Prepare to rename question_jack table as per Moodle standards.
         $table = new xmldb_table('question_jack');
 
-        if (!$dbman->table_exists($table)) {
         // Rename question_jack table to qtype_jack as per Moodle standards.
+        if ($dbman->table_exists($table)) {
             $dbman->rename_table($table, 'qtype_jack');
         }
 
