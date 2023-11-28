@@ -19,7 +19,7 @@
  *
  * @package    qtype_jack
  * @subpackage jack
- * @copyright  2005 Mark Nielsen
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -31,7 +31,7 @@ require_once($CFG->dirroot.'/question/type/jack/lib.php');
 /**
  * The jack question type.
  *
- * @copyright  2005 Mark Nielsen
+ * @copyright  2022 Wunderbyte GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_jack extends question_type {
