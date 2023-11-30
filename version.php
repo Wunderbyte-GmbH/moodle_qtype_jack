@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_jack';
-$plugin->release = '1.1.2';
-$plugin->version   = 2023112800;
+$plugin->release = '1.1.3';
+$plugin->version   = 2023113000;
 $plugin->requires  = 2020060900;
 $plugin->maturity  = MATURITY_STABLE;
